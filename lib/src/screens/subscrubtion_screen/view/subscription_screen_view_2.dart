@@ -2,9 +2,11 @@ import 'package:one_minute_english/src/screens/subscrubtion_screen/controller/su
 import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
-import 'package:one_minute_english/src/utils/my_widgets.dart';
+import 'package:one_minute_english/src/utils/my_widgets/my_color_button.dart';
 
+import '../../../utils/app_language/app_language.dart';
 import '../../../utils/my_parameters.dart';
+import '../../start_screen/controller/start_screen_controller.dart';
 
 class SubscriptionScreenView2 extends ConsumerStatefulWidget {
   const SubscriptionScreenView2({super.key});
@@ -18,30 +20,40 @@ class _SubscriptionScreenView2State
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
-    final texts = ['1 месяц', '12 месяцев'];
+    final subIndex = ref.watch(subscriptionScreenProvider).chosenSubIndex;
+    final langIndex = ref.watch(startScreenProvider).chosenLanguageIndex;
+    final lang = AppLanguage.listOfLanguages[langIndex];
+    final texts = [
+      lang[LangKey.oneMonth],
+      lang[LangKey.twelveMonths],
+    ];
     final subTexts = ['\$14,99', '\$79,99'];
-    final priceTexts = ['\$14,99 / мес.', '\$6.67 / мес'];
+    final priceTexts = [
+      '\$14,99 / ${lang[LangKey.monthShort]}',
+      '\$6.67 / ${lang[LangKey.monthShort]}'
+    ];
 
     return Scaffold(
       body: Column(
         children: [
           buildCloseIcon(myParameters),
-          buildIconText(myParameters),
-          buildPricesColumn(myParameters, texts, subTexts, priceTexts),
-          buildSubTypeBottomText(myParameters),
-          buildContinueButton(),
-          buildTermsOfUseButton(myParameters),
-          buildRestorePurchasesButton(myParameters)
+          buildIconText(myParameters, lang),
+          buildPricesColumn(myParameters, texts, subTexts, priceTexts, lang, subIndex),
+          buildSubTypeBottomText(myParameters, lang),
+          buildContinueButton(lang),
+          buildTermsOfUseButton(myParameters, lang),
+          buildRestorePurchasesButton(myParameters, lang)
         ],
       ),
     );
   }
 
-  InkWell buildRestorePurchasesButton(MyParameters myParameters) {
+  InkWell buildRestorePurchasesButton(
+      MyParameters myParameters, Map<LangKey, String> lang) {
     return InkWell(
       onTap: () {},
       child: Text(
-        'Восстановить покупки',
+        lang[LangKey.restorePurchases]!,
         textAlign: TextAlign.center,
         style: TextStyle(
             fontSize: myParameters.pixelWidth * 14,
@@ -52,7 +64,8 @@ class _SubscriptionScreenView2State
     );
   }
 
-  InkWell buildTermsOfUseButton(MyParameters myParameters) {
+  InkWell buildTermsOfUseButton(
+      MyParameters myParameters, Map<LangKey, String> lang) {
     return InkWell(
       onTap: () {},
       child: Padding(
@@ -60,7 +73,7 @@ class _SubscriptionScreenView2State
             top: myParameters.pixelHeight * 45,
             bottom: myParameters.pixelHeight * 30),
         child: Text(
-          'Условия использования',
+          lang[LangKey.termsOfUse]!,
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: myParameters.pixelWidth * 14,
@@ -72,10 +85,12 @@ class _SubscriptionScreenView2State
     );
   }
 
-  MyColorButtonWidget buildContinueButton() =>
-      MyColorButtonWidget(func: () => null, text: 'Продолжить');
+  MyColorButtonWidget buildContinueButton(Map<LangKey, String> lang) =>
+      MyColorButtonWidget(
+          func: () => null, text: lang[LangKey.continueButton]!);
 
-  Padding buildSubTypeBottomText(MyParameters myParameters) {
+  Padding buildSubTypeBottomText(
+      MyParameters myParameters, Map<LangKey, String> lang) {
     return Padding(
       padding: EdgeInsets.only(
           top: myParameters.pixelHeight * 25,
@@ -84,7 +99,7 @@ class _SubscriptionScreenView2State
         width: myParameters.pixelWidth * 350,
         height: myParameters.pixelHeight * 67,
         child: Text(
-          'Выбери вариант подписки по истечению 7 дней бесплатного периода',
+          lang[LangKey.chooseSubscriptionOptionAfter7daysOfFreePeriod]!,
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: myParameters.pixelWidth * 14,
@@ -96,8 +111,12 @@ class _SubscriptionScreenView2State
     );
   }
 
-  Padding buildPricesColumn(MyParameters myParameters, List<String> texts,
-      List<String> subTexts, List<String> priceTexts) {
+  Padding buildPricesColumn(
+      MyParameters myParameters,
+      List<String?> texts,
+      List<String?> subTexts,
+      List<String> priceTexts,
+      Map<LangKey, String> lang, int subIndex) {
     return Padding(
       padding: EdgeInsets.only(top: myParameters.pixelHeight * 75),
       child: SizedBox(
@@ -114,7 +133,9 @@ class _SubscriptionScreenView2State
                           Positioned(
                             top: myParameters.pixelHeight * 10,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                SubscriptionScreenController.onSubTap(ref, index);
+                              },
                               child: Stack(
                                 children: [
                                   Container(
@@ -134,7 +155,7 @@ class _SubscriptionScreenView2State
                                           BoxShadow(
                                             color: MyColors.textLiteGreyColor
                                                 .withOpacity(0.5),
-                                            blurRadius: index == 0
+                                            blurRadius: index == subIndex
                                                 ? myParameters.pixelWidth * 4
                                                 : 0,
                                           ),
@@ -154,7 +175,7 @@ class _SubscriptionScreenView2State
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                texts[index],
+                                                texts[index]!,
                                                 style: TextStyle(
                                                     fontFamily:
                                                         MyConstants.fontLabel,
@@ -169,7 +190,7 @@ class _SubscriptionScreenView2State
                                                             .pixelHeight *
                                                         5),
                                                 child: Text(
-                                                  subTexts[index],
+                                                  subTexts[index]!,
                                                   style: TextStyle(
                                                       fontFamily:
                                                           MyConstants.fontLabel,
@@ -216,7 +237,7 @@ class _SubscriptionScreenView2State
                                                       10))),
                                       child: Center(
                                           child: Text(
-                                        'популярное',
+                                        lang[LangKey.popular]!,
                                         style: TextStyle(
                                             fontSize:
                                                 myParameters.pixelWidth * 16,
@@ -229,7 +250,7 @@ class _SubscriptionScreenView2State
                               ),
                             ),
                           ),
-                          if (index == 0)
+                          if (index == subIndex)
                             Positioned(
                               top: 0,
                               right: 0,
@@ -256,7 +277,7 @@ class _SubscriptionScreenView2State
     );
   }
 
-  SizedBox buildIconText(MyParameters myParameters) {
+  SizedBox buildIconText(MyParameters myParameters, Map<LangKey, String> lang) {
     return SizedBox(
       child: Column(
         children: [
@@ -270,7 +291,7 @@ class _SubscriptionScreenView2State
                 top: myParameters.pixelHeight * 23,
                 bottom: myParameters.pixelHeight * 15),
             child: Text(
-              'Через 28 дней',
+              lang[LangKey.after28days]!,
               style: TextStyle(
                   fontSize: myParameters.pixelWidth * 30,
                   fontWeight: FontWeight.w900,
@@ -280,7 +301,7 @@ class _SubscriptionScreenView2State
           SizedBox(
             width: myParameters.pixelWidth * 270,
             child: Text(
-              'ты не будешь терять время на поиски нужного слова',
+              lang[LangKey.youWillNotWasteTimeLookingForTheRightWord]!,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: myParameters.pixelWidth * 16,

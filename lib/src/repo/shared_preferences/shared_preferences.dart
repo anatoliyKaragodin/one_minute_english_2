@@ -8,7 +8,7 @@ class SharPrefs {
 
   Future<int> loadSelectedLanguage() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getInt('selectedLanguageIndex') ?? 0;
+    return prefs.getInt('selectedLanguageIndex') ?? 1;
   }
 
   Future<void> saveSelectedThemes(List<int> listOfSelectedThemes) async {

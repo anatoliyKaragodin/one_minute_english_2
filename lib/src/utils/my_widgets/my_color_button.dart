@@ -5,13 +5,25 @@ import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
 
-import 'my_parameters.dart';
+import '../my_parameters.dart';
 
 class MyColorButtonWidget extends ConsumerStatefulWidget {
   final Function func;
   final String text;
+  final double? height;
+  final double? width;
+  final double? padding;
+  final double? fontSize;
+  final FontWeight? fontWeight;
   const MyColorButtonWidget(
-      {super.key, required this.func, required this.text});
+      {super.key,
+      required this.func,
+      required this.text,
+      this.height,
+      this.padding,
+      this.width,
+      this.fontSize,
+      this.fontWeight});
 
   @override
   ConsumerState createState() => _MyColorButtonWidget();
@@ -22,14 +34,15 @@ class _MyColorButtonWidget extends ConsumerState<MyColorButtonWidget> {
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: myParameters.pixelWidth * 20),
+      padding: EdgeInsets.symmetric(
+          horizontal: widget.padding ?? myParameters.pixelWidth * 20),
       child: InkWell(
         onTap: () {
           widget.func();
         },
         child: Container(
-          height: myParameters.pixelHeight * 54,
-          width: myParameters.pixelWidth * 390,
+          height: widget.height ?? myParameters.pixelHeight * 54,
+          width: widget.width ?? myParameters.pixelWidth * 390,
           decoration: BoxDecoration(
               color: MyColors.mainColor,
               boxShadow: [
@@ -47,8 +60,8 @@ class _MyColorButtonWidget extends ConsumerState<MyColorButtonWidget> {
               widget.text,
               style: TextStyle(
                   fontFamily: MyConstants.fontLabel,
-                  fontWeight: FontWeight.w400,
-                  fontSize: myParameters.pixelWidth * 18,
+                  fontWeight: widget.fontWeight?? FontWeight.w900,
+                  fontSize: widget.fontSize?? myParameters.pixelWidth * 18,
                   color: MyColors.whiteColor),
             ),
           ),

@@ -7,7 +7,7 @@ class StartScreenModel extends StateNotifier<StartScreen> {
       : super(const StartScreen(
             logoOpacity: 0,
             nextButtonOpacity: 0,
-            chosenLanguageIndex: 0,
+            chosenLanguageIndex: 1,
             startPageIndex: 0,
             pageOpacity: 0)) {
     initState();

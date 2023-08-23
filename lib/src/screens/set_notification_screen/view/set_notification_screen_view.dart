@@ -2,11 +2,13 @@ import 'package:one_minute_english/src/screens/set_notification_screen/controlle
 import 'package:one_minute_english/src/screens/set_notification_screen/view/widgets/my_time_notification_widget.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
-import 'package:one_minute_english/src/utils/my_widgets.dart';
+import 'package:one_minute_english/src/utils/my_widgets/my_color_button.dart';
 import 'package:timezone/timezone.dart' as tz;
 
+import '../../../utils/app_language/app_language.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/my_parameters.dart';
+import '../../start_screen/controller/start_screen_controller.dart';
 
 class SetNotificationScreenView extends ConsumerStatefulWidget {
   const SetNotificationScreenView({super.key});
@@ -20,11 +22,13 @@ class _SetNotificationScreenViewState
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
+    final langIndex = ref.watch(startScreenProvider).chosenLanguageIndex;
+    final lang = AppLanguage.listOfLanguages[langIndex];
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          buildText(myParameters),
+          buildText(myParameters, lang),
           Padding(
               padding: EdgeInsets.only(bottom: myParameters.pixelHeight * 70),
               child: const MyTimeNotificationCarouselWidget()),
@@ -33,14 +37,14 @@ class _SetNotificationScreenViewState
             child: MyColorButtonWidget(
                 func: () => SetNotificationScreenController.onTapNextButton(
                     ref, context),
-                text: 'Далее'),
+                text: lang[LangKey.nextButton]!),
           )
         ],
       ),
     );
   }
 
-  Padding buildText(MyParameters myParameters) {
+  Padding buildText(MyParameters myParameters, Map<LangKey, String> lang) {
     return Padding(
       padding: EdgeInsets.only(top: myParameters.pixelHeight * 136),
       child: SizedBox(
@@ -49,7 +53,7 @@ class _SetNotificationScreenViewState
         child: Column(
           children: [
             Text(
-              'Создай новую полезную привычку',
+              lang[LangKey.createNewGoodHabit]!,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: MyConstants.fontLabel,
@@ -61,7 +65,7 @@ class _SetNotificationScreenViewState
               child: SizedBox(
                 width: myParameters.pixelWidth * 228,
                 child: Text(
-                  'Включи напоминание для практики английского',
+                  lang[LangKey.turnOnRemindersToPracticeEnglish]!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: MyColors.textLiteGreyColor,

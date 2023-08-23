@@ -2,9 +2,11 @@ import 'package:one_minute_english/src/screens/subscrubtion_screen/controller/su
 import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
-import 'package:one_minute_english/src/utils/my_widgets.dart';
+import 'package:one_minute_english/src/utils/my_widgets/my_color_button.dart';
 
+import '../../../utils/app_language/app_language.dart';
 import '../../../utils/my_parameters.dart';
+import '../../start_screen/controller/start_screen_controller.dart';
 
 class SubscriptionScreenView extends ConsumerStatefulWidget {
   const SubscriptionScreenView({super.key});
@@ -30,27 +32,29 @@ class _SubscriptionScreenViewState
     MyColors.blueColor,
     MyColors.whiteColor
   ];
-  static const texts = [
-    'Подготовка программы обучения',
-    'Сегодня. Полный доступ',
-    'День 5. Напоминание',
-    'День 7. Начало подписки'
-  ];
-  static const subTexts = [
-    '',
-    'Ничего не нужно платить сейчас',
-    'Мы напомним об окончании пробного периода. Отмена любой момент',
-    'Твоя подписка активируется 27 апреля'
-  ];
+
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
-
+    final langIndex = ref.watch(startScreenProvider).chosenLanguageIndex;
+    final lang = AppLanguage.listOfLanguages[langIndex];
+    final texts = [
+      lang[LangKey.trainingProgramPreparation],
+      lang[LangKey.todayFullAccess],
+      lang[LangKey.day5Notification],
+      lang[LangKey.day7SubscriptionStart],
+    ];
+    final subTexts = [
+      '',
+      lang[LangKey.nothingToPayNow],
+      lang[LangKey.weWillRemindYouWhenTheTrialPeriodEndsCancelAnyMoment],
+      lang[LangKey.yourSubscriptionWillBeActivatedOn],
+    ];
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          buildTopTextImgContainer(myParameters),
+          buildTopTextImgContainer(myParameters, lang),
           Padding(
             padding: EdgeInsets.only(left: myParameters.pixelWidth * 20),
             child: SizedBox(
@@ -61,15 +65,15 @@ class _SubscriptionScreenViewState
                   Positioned(
                     left: myParameters.pixelWidth * 26.5,
                     top: 0,
-                    bottom: 0,
+                    bottom: myParameters.pixelHeight*20,
                     child: CustomPaint(
                       size: Size(myParameters.pixelWidth * 2,
-                          myParameters.pixelHeight * 440),
+                          myParameters.pixelHeight * 420),
                       painter:
                           DashedLinePainter(color: MyColors.textLiteGreyColor),
                     ),
                   ),
-                  buildIconsTextsColumn(myParameters, colors),
+                  buildIconsTextsColumn(myParameters, colors, texts, subTexts),
                 ],
               ),
             ),
@@ -79,15 +83,15 @@ class _SubscriptionScreenViewState
             child: MyColorButtonWidget(
                 func: () =>
                     SubscriptionScreenController.onNextTapScreen1(context),
-                text: 'Продолжить'),
+                text: lang[LangKey.continueButton]!),
           )
         ],
       ),
     );
   }
 
-  SizedBox buildIconsTextsColumn(
-      MyParameters myParameters, List<Color?> colors) {
+  SizedBox buildIconsTextsColumn(MyParameters myParameters, List<Color?> colors,
+      List<String?> texts, List<String?> subTexts) {
     return SizedBox(
       height: myParameters.pixelHeight * 440,
       width: myParameters.pixelWidth * 313,
@@ -126,7 +130,7 @@ class _SubscriptionScreenViewState
                           SizedBox(
                               width: myParameters.pixelWidth * 240,
                               child: Text(
-                                texts[index],
+                                texts[index]!,
                                 style: TextStyle(
                                   fontFamily: MyConstants.fontLabel,
                                   fontWeight: FontWeight.w900,
@@ -145,7 +149,7 @@ class _SubscriptionScreenViewState
                               child: SizedBox(
                                 width: myParameters.pixelWidth * 240,
                                 child: Text(
-                                  subTexts[index],
+                                  subTexts[index]!,
                                   style: TextStyle(
                                       fontFamily: MyConstants.fontLabel,
                                       fontWeight: FontWeight.w400,
@@ -162,7 +166,8 @@ class _SubscriptionScreenViewState
     );
   }
 
-  Center buildTopTextImgContainer(MyParameters myParameters) {
+  Center buildTopTextImgContainer(
+      MyParameters myParameters, Map<LangKey, String> lang) {
     return Center(
       child: Padding(
         padding: EdgeInsets.only(top: myParameters.pixelHeight * 115),
@@ -180,7 +185,7 @@ class _SubscriptionScreenViewState
               SizedBox(
                   width: myParameters.pixelWidth * 200,
                   child: Text(
-                    'Учись 7 дней бесплатно',
+                    lang[LangKey.study7daysForFree]!,
                     style: TextStyle(
                         fontFamily: MyConstants.fontLabel,
                         fontWeight: FontWeight.w900,

@@ -1,9 +1,11 @@
 import 'package:one_minute_english/src/utils/library.dart';
-import 'package:one_minute_english/src/utils/my_widgets.dart';
+import 'package:one_minute_english/src/utils/my_widgets/my_color_button.dart';
 
+import '../../../../utils/app_language/app_language.dart';
 import '../../../../utils/constants.dart';
 import '../../../../utils/my_colors.dart';
 import '../../../../utils/my_parameters.dart';
+import '../../../start_screen/controller/start_screen_controller.dart';
 import '../../controller/subscrubtion_screen_controller.dart';
 
 class SubscriptionDialogWidget extends ConsumerStatefulWidget {
@@ -18,9 +20,20 @@ class _SubscriptionDialogWidgetState
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
-    final textsPart1 = ['Это ', 'Есть '];
-    final textsPart2 = ['абсолютно бесплатно ', 'возможность отменить '];
-    final textsPart3 = ['в течение пробного периода.', 'в любой момент.'];
+    final langIndex = ref.watch(startScreenProvider).chosenLanguageIndex;
+    final lang = AppLanguage.listOfLanguages[langIndex];
+    final textsPart1 = [
+      lang[LangKey.its],
+      lang[LangKey.itIs],
+    ];
+    final textsPart2 = [
+      lang[LangKey.absolutelyFree],
+      lang[LangKey.possibleToCancel],
+    ];
+    final textsPart3 = [
+      lang[LangKey.duringTheTrialPeriod],
+      lang[LangKey.atAnyTime],
+    ];
 
     return Dialog(
       shape: RoundedRectangleBorder(
@@ -31,7 +44,7 @@ class _SubscriptionDialogWidgetState
         child: Column(
           children: [
             buildCloseButton(myParameters, context),
-            buildTopText(myParameters),
+            buildTopText(myParameters, lang),
             Padding(
               padding: EdgeInsets.symmetric(
                   vertical: myParameters.pixelHeight * 32,
@@ -64,10 +77,10 @@ class _SubscriptionDialogWidgetState
                                           color: MyColors.textLiteGreyColor),
                                       children: <TextSpan>[
                                         TextSpan(
-                                          text: textsPart1[index],
+                                          text: '${textsPart1[index]} ',
                                         ),
                                         TextSpan(
-                                            text: textsPart2[index],
+                                            text: '${textsPart2[index]} ',
                                             style: TextStyle(
                                                 color:
                                                     MyColors.greenDarkColor)),
@@ -84,26 +97,30 @@ class _SubscriptionDialogWidgetState
                 ),
               ),
             ),
-            buildBottomButton(myParameters)
+            buildBottomButton(myParameters, lang)
           ],
         ),
       ),
     );
   }
 
-  Padding buildBottomButton(MyParameters myParameters) {
+  Padding buildBottomButton(
+      MyParameters myParameters, Map<LangKey, String> lang) {
     return Padding(
       padding: EdgeInsets.only(
           left: myParameters.pixelWidth * 18,
           right: myParameters.pixelWidth * 18,
           top: myParameters.pixelHeight * 20),
-      child: MyColorButtonWidget(func: () => null, text: 'Использовать 7 дней'),
+      child: MyColorButtonWidget(
+        func: () => SubscriptionScreenController.onUse7daysTap(context),
+        text: lang[LangKey.use7days]!,
+      ),
     );
   }
 
-  Text buildTopText(MyParameters myParameters) {
+  Text buildTopText(MyParameters myParameters, Map<LangKey, String> lang) {
     return Text(
-      'Не беспокойся',
+      lang[LangKey.dontWorry]!,
       style: TextStyle(
           fontFamily: MyConstants.fontLabel,
           fontWeight: FontWeight.w900,

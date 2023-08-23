@@ -1,41 +1,23 @@
 import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/controller/choose_level_and_themes_controller.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 
+import '../../../../utils/app_language/app_language.dart';
 import '../../../../utils/constants.dart';
 import '../../../../utils/my_colors.dart';
 import '../../../../utils/my_parameters.dart';
 
 class ListOfThemesWidget extends ConsumerStatefulWidget {
-  const ListOfThemesWidget({super.key});
+  final int lang;
+  const ListOfThemesWidget({
+    super.key,
+    required this.lang,
+  });
 
   @override
   ConsumerState createState() => _ListOfThemesWidgetState();
 }
 
 class _ListOfThemesWidgetState extends ConsumerState<ListOfThemesWidget> {
-  static const themesLabels = [
-    'Выбрать все',
-    'Beginner',
-    'Elementary',
-    'Intermediate',
-    'Upper-Intermediate',
-    'Advanced',
-    'Еда и напитки',
-    'Професии',
-    'Одежда',
-    'Спорт',
-    'Семья и друзья',
-    'В доме',
-    'В городе',
-    'Цвета',
-    'Путешествия',
-    'Страны',
-    'Погода',
-    'Месяцы',
-    'Животные',
-    'Неправильные глаголы',
-    'Фразовые глаголы'
-  ];
   static const themesImgs = [
     'assets/ui_images/levels_and_themes/select_all.png',
     'assets/ui_images/levels_and_themes/lvl_A1.png',
@@ -94,7 +76,29 @@ class _ListOfThemesWidgetState extends ConsumerState<ListOfThemesWidget> {
       colors[3],
       colors[1],
     ];
-
+    final themesLabels = [
+      AppLanguage.listOfLanguages[widget.lang][LangKey.selectAll],
+      'Beginner',
+      'Elementary',
+      'Intermediate',
+      'Upper-Intermediate',
+      'Advanced',
+      AppLanguage.listOfLanguages[widget.lang][LangKey.foodAndDrinks],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.professions],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.cloth],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.sport],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.familyAndFriends],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.home],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.city],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.colors],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.trips],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.countries],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.weather],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.months],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.animals],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.irregularVerbs],
+      AppLanguage.listOfLanguages[widget.lang][LangKey.phrasalVerbs],
+    ];
     return SizedBox(
       height: myParameters.pixelHeight * 670,
       child: ListView.builder(
@@ -102,13 +106,13 @@ class _ListOfThemesWidgetState extends ConsumerState<ListOfThemesWidget> {
           itemCount: 21,
           itemBuilder: (BuildContext context, int index) {
             return buildThemeMainContainer(myParameters, index,
-                themeColors[index], listOfThemes.contains(index));
+                themeColors[index], listOfThemes.contains(index), themesLabels);
           }),
     );
   }
 
-  Padding buildThemeMainContainer(
-      MyParameters myParameters, int index, Color color, bool isSelected) {
+  Padding buildThemeMainContainer(MyParameters myParameters, int index,
+      Color color, bool isSelected, List<String?> themesLabels) {
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: myParameters.pixelWidth * 36,
@@ -132,7 +136,7 @@ class _ListOfThemesWidgetState extends ConsumerState<ListOfThemesWidget> {
               child: buildImage(myParameters, index),
             ),
             buildTextAndSelect(
-                myParameters, themesLabels[index], color, isSelected)
+                myParameters, themesLabels[index]!, color, isSelected)
           ],
         ),
       ),

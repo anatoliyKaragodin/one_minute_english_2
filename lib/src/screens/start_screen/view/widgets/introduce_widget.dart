@@ -1,6 +1,7 @@
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
 
+import '../../../../utils/app_language/app_language.dart';
 import '../../../../utils/constants.dart';
 import '../../../../utils/my_parameters.dart';
 import '../../controller/start_screen_controller.dart';
@@ -13,12 +14,6 @@ class IntroduceWidget extends ConsumerStatefulWidget {
 }
 
 class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
-  static const textList = [
-    'Слова - это основа языка. Мы начнем с простых слов, и ты быстро достигнешь нового уровня.',
-    'В основе - методика запоминания «Fast brain>> и улучшенная технология интервального повторения',
-    'Учи по 8 новых слов в день. И уже через месяц Ты запомнишь более 250 слов',
-    'Приложение адаптируется под твои интересы, результаты и регулярность занятий'
-  ];
   static const imgList = [
     'assets/ui_images/start_screen_imgs/img1.png',
     'assets/ui_images/start_screen_imgs/img2.png',
@@ -31,15 +26,18 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
     final startScreenState = ref.watch(startScreenProvider);
     final pageOpacity = startScreenState.pageOpacity;
     final pageIndex = startScreenState.startPageIndex;
-
-    return buildIntroduce(myParameters, pageOpacity, pageIndex);
+    final language = ref.watch(startScreenProvider).chosenLanguageIndex;
+    final textList = [
+      AppLanguage.listOfLanguages[language][LangKey.introduceText1],
+      AppLanguage.listOfLanguages[language][LangKey.introduceText2],
+      AppLanguage.listOfLanguages[language][LangKey.introduceText3],
+      AppLanguage.listOfLanguages[language][LangKey.introduceText4],
+    ];
+    return buildIntroduce(myParameters, pageOpacity, pageIndex, textList, language);
   }
 
-  Positioned buildIntroduce(
-    MyParameters myParameters,
-    double pageOpacity,
-    int pageIndex,
-  ) {
+  Positioned buildIntroduce(MyParameters myParameters, double pageOpacity,
+      int pageIndex, List<String?> textList, int language) {
     return Positioned(
       height: myParameters.pixelHeight * 750,
       width: myParameters.width,
@@ -49,8 +47,8 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
         child: Column(
           children: [
             buildImg(myParameters, pageIndex),
-            buildText(myParameters, pageIndex),
-            buildSkipButton(myParameters),
+            buildText(myParameters, pageIndex, textList),
+            buildSkipButton(myParameters,language),
             buildDotsRow(myParameters, pageIndex)
           ],
         ),
@@ -82,47 +80,60 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
     );
   }
 
-  InkWell buildSkipButton(MyParameters myParameters) {
+  InkWell buildSkipButton(MyParameters myParameters, int language) {
     return InkWell(
       onTap: () {
         StartScreenController.onSkipTap(context);
       },
       child: SizedBox(
         height: myParameters.pixelHeight * 36,
-        child: Stack(children: [
-          Text(
-            'Пропустить',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontFamily: MyConstants.fontLabel,
-                fontSize: myParameters.pixelWidth * 20),
-          ),
-          Positioned(
-            left: myParameters.pixelWidth * 26,
-            bottom: 0,
-            child: Row(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                    width: myParameters.pixelWidth * 58,
+                Text(
+                  AppLanguage.listOfLanguages[language][LangKey.skipButton]!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: MyConstants.fontLabel,
+                    fontSize: myParameters.pixelWidth * 20,
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Row(
+                children: [
+                  Expanded(
                     child: Divider(
                       color: MyColors.blackColor87,
                       thickness: myParameters.pixelHeight,
-                    )),
-              ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
+
       ),
     );
   }
 
-  Center buildText(MyParameters myParameters, int pageIndex) {
+  Center buildText(
+      MyParameters myParameters, int pageIndex, List<String?> textList) {
     return Center(
       child: SizedBox(
         width: myParameters.pixelWidth * 257,
         height: myParameters.pixelHeight * 170,
         child: Text(
-          textList[pageIndex - 1],
+          textList[pageIndex - 1]!,
           textAlign: TextAlign.center,
           style: TextStyle(
               fontFamily: MyConstants.fontLabel,

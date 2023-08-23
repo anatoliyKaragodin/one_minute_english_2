@@ -72,6 +72,9 @@ flutter:
     - assets/ui_images/start_screen_imgs/
     - assets/ui_images/levels_and_themes/
     - assets/ui_images/sub/
+    - assets/ui_images/main_app/
+    - assets/ui_images/main_app/icons/
+    - assets/ui_images/main_app/progress/
     - assets/words_images/
   #   - images/a_dot_ham.jpeg
 
