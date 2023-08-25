@@ -18,9 +18,7 @@ class MyProgressCircleIndicator extends StatelessWidget {
     return SizedBox(
       height: myParameters.pixelHeight * 205,
       width: myParameters.pixelWidth * 168,
-      child: Stack(
-          alignment: Alignment.center,
-          children: [
+      child: Stack(alignment: Alignment.center, children: [
         Align(
           alignment: Alignment.topCenter,
           child: Text(
@@ -46,7 +44,7 @@ class MyProgressCircleIndicator extends StatelessWidget {
           ),
         ),
         Positioned(
-           bottom: myParameters.pixelHeight*50,
+          bottom: myParameters.pixelHeight * 50,
           // left: myParameters.pixelWidth*84,
           child: Column(
             mainAxisSize: MainAxisSize.min,

@@ -23,7 +23,7 @@ class MySwitch extends StatelessWidget {
     final myParameters = MyParameters(context);
 
     return InkWell(
-      onTap: () =>onTap(),
+      onTap: () => onTap(),
       child: Stack(
         clipBehavior: Clip.none,
         children: [

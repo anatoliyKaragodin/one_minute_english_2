@@ -90,7 +90,5 @@ class LangRu {
     LangKey.other: 'Другое',
     LangKey.notifications: 'Напоминания',
     LangKey.privacyPolicy: 'Политика конфиденциальности',
-
-
   };
 }

@@ -14,11 +14,11 @@ class MyLineIndicatorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
-    final valueWidth =width?? myParameters.pixelWidth * 142;
+    final valueWidth = width ?? myParameters.pixelWidth * 142;
     return Stack(children: [
       Container(
-        width: width??myParameters.pixelWidth * 142,
-        height: height??myParameters.pixelHeight * 12,
+        width: width ?? myParameters.pixelWidth * 142,
+        height: height ?? myParameters.pixelHeight * 12,
         decoration: BoxDecoration(
             color: MyColors.whiteColor,
             borderRadius: BorderRadius.circular(myParameters.pixelWidth * 6)),
@@ -26,8 +26,8 @@ class MyLineIndicatorWidget extends StatelessWidget {
       Positioned(
         left: 0,
         child: AnimatedContainer(
-          width: valueWidth*value,
-          height: height??myParameters.pixelHeight * 12,
+          width: valueWidth * value,
+          height: height ?? myParameters.pixelHeight * 12,
           decoration: BoxDecoration(
               color: MyColors.yellowColor,
               borderRadius: BorderRadius.circular(myParameters.pixelWidth * 6)),

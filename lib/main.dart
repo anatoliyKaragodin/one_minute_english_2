@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: false,
       ),
-      home: const MainAppMenuScreenView(),
+      home: const StartScreenView(),
       routes: {
         const StartScreenView().route: (context) => const StartScreenView(),
         const ChooseLvlAndThemesScreenView().route: (context) =>

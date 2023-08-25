@@ -48,10 +48,9 @@ class _ChooseLvlAndThemesScreenViewState
           Padding(
             padding: EdgeInsets.only(top: myParameters.pixelHeight * 20),
             child: MyColorButtonWidget(
-              func: () =>
-                  ChooseLevelAndThemesController.onNextTap(context, ref),
-              text: AppLanguage.listOfLanguages[lang][LangKey.nextButton]!
-            ),
+                func: () =>
+                    ChooseLevelAndThemesController.onNextTap(context, ref),
+                text: AppLanguage.listOfLanguages[lang][LangKey.nextButton]!),
           )
         ],
       ),

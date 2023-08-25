@@ -1,4 +1,3 @@
-
 import 'lang_ru.dart';
 
 class AppLanguage {
@@ -139,11 +138,12 @@ enum LangKey {
   lastDayOfAccess,
   get,
   themesForLearning,
-wordsPerDay,
+  wordsPerDay,
   listening,
   pronunciation,
   answerSound,
-  trainings, words,
+  trainings,
+  words,
   feedback,
   rateTheApp,
   other,

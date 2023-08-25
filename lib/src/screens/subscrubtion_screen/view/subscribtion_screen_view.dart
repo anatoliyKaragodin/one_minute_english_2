@@ -65,7 +65,7 @@ class _SubscriptionScreenViewState
                   Positioned(
                     left: myParameters.pixelWidth * 26.5,
                     top: 0,
-                    bottom: myParameters.pixelHeight*20,
+                    bottom: myParameters.pixelHeight * 20,
                     child: CustomPaint(
                       size: Size(myParameters.pixelWidth * 2,
                           myParameters.pixelHeight * 420),

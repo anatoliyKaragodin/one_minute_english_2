@@ -38,7 +38,8 @@ class _SubscriptionScreenView2State
         children: [
           buildCloseIcon(myParameters),
           buildIconText(myParameters, lang),
-          buildPricesColumn(myParameters, texts, subTexts, priceTexts, lang, subIndex),
+          buildPricesColumn(
+              myParameters, texts, subTexts, priceTexts, lang, subIndex),
           buildSubTypeBottomText(myParameters, lang),
           buildContinueButton(lang),
           buildTermsOfUseButton(myParameters, lang),
@@ -116,7 +117,8 @@ class _SubscriptionScreenView2State
       List<String?> texts,
       List<String?> subTexts,
       List<String> priceTexts,
-      Map<LangKey, String> lang, int subIndex) {
+      Map<LangKey, String> lang,
+      int subIndex) {
     return Padding(
       padding: EdgeInsets.only(top: myParameters.pixelHeight * 75),
       child: SizedBox(
@@ -134,7 +136,8 @@ class _SubscriptionScreenView2State
                             top: myParameters.pixelHeight * 10,
                             child: InkWell(
                               onTap: () {
-                                SubscriptionScreenController.onSubTap(ref, index);
+                                SubscriptionScreenController.onSubTap(
+                                    ref, index);
                               },
                               child: Stack(
                                 children: [

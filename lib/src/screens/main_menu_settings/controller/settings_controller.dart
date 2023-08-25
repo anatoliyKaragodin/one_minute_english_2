@@ -7,14 +7,12 @@ final settingsProvider = StateNotifierProvider<SettingsModel, Settings>((ref) {
   return SettingsModel();
 });
 
-
 class SettingsController {
   static void onTrainingsSwitchTap(WidgetRef ref, int index) {
     ref.read(settingsProvider.notifier).changeTrainingsSettings(index);
-
   }
 
-  static onRatingTap(WidgetRef ref,int rating) {
+  static onRatingTap(WidgetRef ref, int rating) {
     ref.read(settingsProvider.notifier).setRating(rating);
   }
 }

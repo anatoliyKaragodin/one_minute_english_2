@@ -2,6 +2,7 @@ import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/mo
 import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/model/choose_level_and_themes_screen_model.dart';
 import 'package:one_minute_english/src/screens/set_notification_screen/view/set_notification_screen_view.dart';
 import 'package:one_minute_english/src/utils/library.dart';
+import 'package:one_minute_english/src/utils/transitions/my_transitions.dart';
 
 final chooseLevelAndThemesProvider = StateNotifierProvider<
     ChooseLevelAndThemesScreenModel, ChooseLevelAndThemes>((ref) {
@@ -36,25 +37,8 @@ class ChooseLevelAndThemesController {
     final listOfThemes =
         ref.read(chooseLevelAndThemesProvider).listOfSelectedThemes;
     if (listOfThemes.any((element) => [1, 2, 3, 4, 5].contains(element))) {
-      Navigator.of(context).push(
-        PageRouteBuilder(
-          transitionDuration: const Duration(milliseconds: 500),
-          pageBuilder: (context, animation, secondaryAnimation) {
-            return const SetNotificationScreenView();
-          },
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            var begin = const Offset(1.0, 0.0);
-            var end = Offset.zero;
-            var curve = Curves.easeInOut;
-
-            var tween =
-                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-            var offsetAnimation = animation.drive(tween);
-
-            return SlideTransition(position: offsetAnimation, child: child);
-          },
-        ),
-      );
+      MyPageTransitions.slideTransition(
+          context, const SetNotificationScreenView());
     }
   }
 }

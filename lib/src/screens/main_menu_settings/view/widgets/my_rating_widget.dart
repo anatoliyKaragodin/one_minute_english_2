@@ -25,7 +25,7 @@ class _MyRatingWidgetState extends ConsumerState<MyRatingWidget> {
         children: List.generate(
             5,
             (index) => InkWell(
-                  onTap: () => SettingsController.onRatingTap(ref, index+1),
+                  onTap: () => SettingsController.onRatingTap(ref, index + 1),
                   child: Image.asset(
                     'assets/ui_images/main_app/settings/star.png',
                     color: index <= widget.rating - 1

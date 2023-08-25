@@ -33,7 +33,8 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
       AppLanguage.listOfLanguages[language][LangKey.introduceText3],
       AppLanguage.listOfLanguages[language][LangKey.introduceText4],
     ];
-    return buildIntroduce(myParameters, pageOpacity, pageIndex, textList, language);
+    return buildIntroduce(
+        myParameters, pageOpacity, pageIndex, textList, language);
   }
 
   Positioned buildIntroduce(MyParameters myParameters, double pageOpacity,
@@ -48,7 +49,7 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
           children: [
             buildImg(myParameters, pageIndex),
             buildText(myParameters, pageIndex, textList),
-            buildSkipButton(myParameters,language),
+            buildSkipButton(myParameters, language),
             buildDotsRow(myParameters, pageIndex)
           ],
         ),
@@ -121,7 +122,6 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
             ),
           ],
         ),
-
       ),
     );
   }

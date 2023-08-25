@@ -28,7 +28,9 @@ class _MainMenuEducationScreenViewState
         buildTopContainer(myParameters, lang),
         buildMyProgressText(myParameters, lang),
         Expanded(
-            child: ListOfLearningThemesWidget(lang: langIndex,))
+            child: ListOfLearningThemesWidget(
+          lang: langIndex,
+        ))
       ],
     );
   }

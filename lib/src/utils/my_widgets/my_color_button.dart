@@ -32,7 +32,7 @@ class _MyColorButtonWidget extends ConsumerState<MyColorButtonWidget> {
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
-    final color = widget.color??MyColors.mainColor;
+    final color = widget.color ?? MyColors.mainColor;
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: widget.padding ?? myParameters.pixelWidth * 20),

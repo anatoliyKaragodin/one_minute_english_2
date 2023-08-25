@@ -3,6 +3,7 @@ import 'package:one_minute_english/src/screens/set_notification_screen/model/set
 import 'package:one_minute_english/src/screens/subscrubtion_screen/view/subscribtion_screen_view.dart';
 import 'package:one_minute_english/src/services/notifications_service.dart';
 import 'package:one_minute_english/src/utils/library.dart';
+import 'package:one_minute_english/src/utils/transitions/my_transitions.dart';
 
 final setNotificationProvider =
     StateNotifierProvider<SetNotificationScreenModel, SetNotificationScreen>(
@@ -21,25 +22,7 @@ class SetNotificationScreenController {
   }
 
   static onTapNextButton(WidgetRef ref, BuildContext context) async {
-    Navigator.of(context).push(
-      PageRouteBuilder(
-        transitionDuration: const Duration(milliseconds: 500),
-        pageBuilder: (context, animation, secondaryAnimation) {
-          return const SubscriptionScreenView();
-        },
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          var begin = const Offset(1.0, 0.0);
-          var end = Offset.zero;
-          var curve = Curves.easeInOut;
-
-          var tween =
-              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-          var offsetAnimation = animation.drive(tween);
-
-          return SlideTransition(position: offsetAnimation, child: child);
-        },
-      ),
-    );
+    MyPageTransitions.slideTransition(context, const SubscriptionScreenView());
     final time = ref.read(setNotificationProvider);
     NotificationsService().scheduleNotification(time.hours, time.minutes);
   }
