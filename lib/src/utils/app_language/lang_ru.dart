@@ -74,6 +74,23 @@ class LangRu {
     LangKey.repeating: 'Повторяю',
     LangKey.difficult: 'Сложные',
     LangKey.lookingByDate: 'смотреть по дате',
-LangKey.seeHowManyWordsYouHaveLearned:'Узнай, сколько слов ты выучил'
+    LangKey.seeHowManyWordsYouHaveLearned: 'Узнай, сколько слов ты выучил',
+    LangKey.get7moreDays: 'Получи ещё 7 дней',
+    LangKey.lastDayOfAccess: 'Последний день доступа',
+    LangKey.get: 'Получить',
+    LangKey.themesForLearning: 'Темы для изучения',
+    LangKey.wordsPerDay: 'Слов в день',
+    LangKey.trainings: 'Тренировки',
+    LangKey.listening: 'Аудирование',
+    LangKey.pronunciation: 'Произношение',
+    LangKey.answerSound: 'Звук ответа',
+    LangKey.feedback: 'Обратная связь',
+    LangKey.rateTheApp: 'Оцените приложение',
+    LangKey.words: 'Слов',
+    LangKey.other: 'Другое',
+    LangKey.notifications: 'Напоминания',
+    LangKey.privacyPolicy: 'Политика конфиденциальности',
+
+
   };
 }

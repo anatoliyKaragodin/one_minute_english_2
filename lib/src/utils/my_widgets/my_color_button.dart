@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:one_minute_english/src/screens/start_screen/controller/start_screen_controller.dart';
 import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
@@ -15,6 +12,7 @@ class MyColorButtonWidget extends ConsumerStatefulWidget {
   final double? padding;
   final double? fontSize;
   final FontWeight? fontWeight;
+  final Color? color;
   const MyColorButtonWidget(
       {super.key,
       required this.func,
@@ -23,7 +21,8 @@ class MyColorButtonWidget extends ConsumerStatefulWidget {
       this.padding,
       this.width,
       this.fontSize,
-      this.fontWeight});
+      this.fontWeight,
+      this.color});
 
   @override
   ConsumerState createState() => _MyColorButtonWidget();
@@ -33,6 +32,7 @@ class _MyColorButtonWidget extends ConsumerState<MyColorButtonWidget> {
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
+    final color = widget.color??MyColors.mainColor;
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: widget.padding ?? myParameters.pixelWidth * 20),
@@ -44,10 +44,15 @@ class _MyColorButtonWidget extends ConsumerState<MyColorButtonWidget> {
           height: widget.height ?? myParameters.pixelHeight * 54,
           width: widget.width ?? myParameters.pixelWidth * 390,
           decoration: BoxDecoration(
-              color: MyColors.mainColor,
+              color: widget.color ?? MyColors.mainColor,
               boxShadow: [
                 BoxShadow(
-                  color: MyColors.mainColorShadow,
+                  color: Color.fromARGB(
+                    color.alpha,
+                    (color.red * 0.7).toInt(),
+                    (color.green * 0.7).toInt(),
+                    (color.blue * 0.7).toInt(),
+                  ),
                   spreadRadius: 0,
                   blurRadius: 0,
                   offset: const Offset(0, 5),
@@ -60,8 +65,8 @@ class _MyColorButtonWidget extends ConsumerState<MyColorButtonWidget> {
               widget.text,
               style: TextStyle(
                   fontFamily: MyConstants.fontLabel,
-                  fontWeight: widget.fontWeight?? FontWeight.w900,
-                  fontSize: widget.fontSize?? myParameters.pixelWidth * 18,
+                  fontWeight: widget.fontWeight ?? FontWeight.w900,
+                  fontSize: widget.fontSize ?? myParameters.pixelWidth * 18,
                   color: MyColors.whiteColor),
             ),
           ),

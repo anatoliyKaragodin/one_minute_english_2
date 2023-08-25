@@ -37,6 +37,7 @@ dependencies:
   flutter_local_notifications: ^15.1.0+1
   timezone: ^0.9.2
   flutter_timezone: ^1.0.7
+  percent_indicator: ^4.2.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -75,6 +76,7 @@ flutter:
     - assets/ui_images/main_app/
     - assets/ui_images/main_app/icons/
     - assets/ui_images/main_app/progress/
+    - assets/ui_images/main_app/settings/
     - assets/words_images/
   #   - images/a_dot_ham.jpeg
 

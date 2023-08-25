@@ -134,6 +134,19 @@ enum LangKey {
   repeating,
   difficult,
   lookingByDate,
-  seeHowManyWordsYouHaveLearned
-
+  seeHowManyWordsYouHaveLearned,
+  get7moreDays,
+  lastDayOfAccess,
+  get,
+  themesForLearning,
+wordsPerDay,
+  listening,
+  pronunciation,
+  answerSound,
+  trainings, words,
+  feedback,
+  rateTheApp,
+  other,
+  notifications,
+  privacyPolicy
 }

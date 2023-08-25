@@ -4,6 +4,8 @@ class MyColors {
   static Color mainColor = const Color(0xFF5C71E8);
   static Color mainColorShadow = const Color(0xFF4555AE);
   static Color textLiteGreyColor = const Color(0xFF8B8B8B);
+  static Color textMoreLiteGreyColor = const Color(0xFFAAAAAA);
+
   static Color? whiteColor = Colors.white;
   static Color? whiteColor70 = Colors.white70;
   static Color? blackColor54 = Colors.black54;

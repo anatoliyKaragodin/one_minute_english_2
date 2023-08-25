@@ -40,7 +40,7 @@ class _MainMenuProgressScreenViewState
           buildMyWordsText(lang, myParameters),
           buildTopLearningWordsStatContainer(myParameters, texts),
           buildLookByDateContainer(myParameters, lang),
-          MyProgressCircleIndicator(langIndex: langIndex, value: 0.3)
+          MyProgressCircleIndicator(langIndex: langIndex, value: 0.1)
         ],
       ),
     );
@@ -146,7 +146,7 @@ class _MainMenuProgressScreenViewState
   Padding buildLookByDateContainer(
       MyParameters myParameters, Map<LangKey, String> lang) {
     return Padding(
-      padding: EdgeInsets.only(bottom: myParameters.pixelHeight * 19),
+      padding: EdgeInsets.only(bottom: myParameters.pixelHeight * 22),
       child: Container(
           height: myParameters.pixelHeight * 141,
           decoration: BoxDecoration(

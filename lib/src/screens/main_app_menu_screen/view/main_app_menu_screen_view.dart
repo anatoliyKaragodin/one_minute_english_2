@@ -1,6 +1,7 @@
 import 'package:one_minute_english/src/screens/main_app_menu_screen/controller/main_app_menu_controller.dart';
 import 'package:one_minute_english/src/screens/main_menu_education_screen/view/main_menu_education_screen_view.dart';
 import 'package:one_minute_english/src/screens/main_menu_progress_screen/view/main_menu_progress_screen_view.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/view/settings_view.dart';
 import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
@@ -27,9 +28,7 @@ class _MainAppMenuScreenViewState extends ConsumerState<MainAppMenuScreenView> {
   List<Widget> menuPages = [
     const MainMenuEducationScreenView(),
     const MainMenuProgressScreenView(),
-    Container(
-      color: Colors.blue,
-    )
+    const SettingsView()
   ];
 
   final pageController = PageController();
