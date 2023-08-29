@@ -1,3 +1,4 @@
+import 'package:one_minute_english/main.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
 
@@ -24,7 +25,9 @@ class MyProgressCircleIndicator extends StatelessWidget {
           child: Text(
             '24 января',
             style: TextStyle(
-                color: MyColors.textLiteGreyColor,
+                color: isDarkTheme
+                    ? MyColors.whiteColor
+                    : MyColors.textLiteGreyColor,
                 fontWeight: FontWeight.w700,
                 fontFamily: MyConstants.fontLabel,
                 fontSize: myParameters.pixelWidth * 20),
@@ -52,7 +55,9 @@ class MyProgressCircleIndicator extends StatelessWidget {
               Text(
                 '4',
                 style: TextStyle(
-                    color: MyColors.textLiteGreyColor,
+                    color: isDarkTheme
+                        ? MyColors.whiteColor
+                        : MyColors.textLiteGreyColor,
                     fontWeight: FontWeight.w700,
                     fontFamily: MyConstants.fontLabel,
                     fontSize: myParameters.pixelWidth * 45),
@@ -60,7 +65,9 @@ class MyProgressCircleIndicator extends StatelessWidget {
               Text(
                 lang[LangKey.words]!,
                 style: TextStyle(
-                    color: MyColors.textMoreLiteGreyColor,
+                    color: isDarkTheme
+                        ? MyColors.whiteColor
+                        : MyColors.textMoreLiteGreyColor,
                     fontWeight: FontWeight.w800,
                     fontFamily: MyConstants.fontLabel,
                     fontSize: myParameters.pixelWidth * 18),

@@ -1,12 +1,12 @@
 import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/view/choose_level_and_themes_screen_view.dart';
-import 'package:one_minute_english/src/screens/main_app_menu_screen/view/main_app_menu_screen_view.dart';
-import 'package:one_minute_english/src/screens/set_notification_screen/view/set_notification_screen_view.dart';
-import 'package:one_minute_english/src/screens/subscrubtion_screen/view/subscribtion_screen_view.dart';
-import 'package:one_minute_english/src/screens/subscrubtion_screen/view/subscription_screen_view_2.dart';
 import 'package:one_minute_english/src/services/notifications_service.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/screens/start_screen/view/start_screen_view.dart';
+import 'package:one_minute_english/src/utils/my_colors.dart';
 import 'package:timezone/data/latest.dart' as tz;
+
+Brightness systemBrightness = Brightness.light;
+bool isDarkTheme = false;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +15,9 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  systemBrightness =
+      WidgetsBinding.instance.platformDispatcher.platformBrightness;
+  isDarkTheme = systemBrightness == Brightness.dark ? true : false;
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -26,7 +29,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: MyColors.blackColor87,
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.deepPurple, brightness: systemBrightness),
         useMaterial3: false,
       ),
       home: const StartScreenView(),

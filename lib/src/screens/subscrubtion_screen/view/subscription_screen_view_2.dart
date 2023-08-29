@@ -1,3 +1,4 @@
+import 'package:one_minute_english/main.dart';
 import 'package:one_minute_english/src/screens/subscrubtion_screen/controller/subscrubtion_screen_controller.dart';
 import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
@@ -58,7 +59,7 @@ class _SubscriptionScreenView2State
         textAlign: TextAlign.center,
         style: TextStyle(
             fontSize: myParameters.pixelWidth * 14,
-            color: MyColors.blackColor87,
+            color: isDarkTheme ? MyColors.whiteColor : MyColors.blackColor87,
             fontWeight: FontWeight.w900,
             fontFamily: MyConstants.fontLabel),
       ),
@@ -78,7 +79,7 @@ class _SubscriptionScreenView2State
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: myParameters.pixelWidth * 14,
-              color: MyColors.blackColor87,
+              color: isDarkTheme ? MyColors.whiteColor : MyColors.blackColor87,
               fontWeight: FontWeight.w900,
               fontFamily: MyConstants.fontLabel),
         ),
@@ -145,7 +146,10 @@ class _SubscriptionScreenView2State
                                     height: myParameters.pixelHeight * 100,
                                     width: myParameters.pixelWidth * 335,
                                     decoration: BoxDecoration(
-                                        color: MyColors.whiteColor,
+                                        color: index == 0
+                                            ? MyColors.whiteColor
+                                            : Theme.of(context)
+                                                .scaffoldBackgroundColor,
                                         borderRadius: BorderRadius.circular(
                                           myParameters.pixelWidth * 10,
                                         ),
@@ -180,6 +184,10 @@ class _SubscriptionScreenView2State
                                               Text(
                                                 texts[index]!,
                                                 style: TextStyle(
+                                                    color: index == 0
+                                                        ? MyColors.blackColor87
+                                                        : MyColors
+                                                            .textLiteGreyColor,
                                                     fontFamily:
                                                         MyConstants.fontLabel,
                                                     fontWeight: FontWeight.w900,
@@ -195,6 +203,11 @@ class _SubscriptionScreenView2State
                                                 child: Text(
                                                   subTexts[index]!,
                                                   style: TextStyle(
+                                                      color: index == 0
+                                                          ? MyColors
+                                                              .blackColor87
+                                                          : MyColors
+                                                              .textLiteGreyColor,
                                                       fontFamily:
                                                           MyConstants.fontLabel,
                                                       fontWeight:
@@ -213,6 +226,10 @@ class _SubscriptionScreenView2State
                                               Text(
                                                 priceTexts[index],
                                                 style: TextStyle(
+                                                    color: index == 0
+                                                        ? MyColors.blackColor87
+                                                        : MyColors
+                                                            .textLiteGreyColor,
                                                     fontFamily:
                                                         MyConstants.fontLabel,
                                                     fontWeight: FontWeight.w900,
@@ -330,7 +347,9 @@ class _SubscriptionScreenView2State
             height: myParameters.pixelHeight * 30,
             width: myParameters.pixelWidth * 30,
             decoration: BoxDecoration(
-                color: MyColors.blackColor87, shape: BoxShape.circle),
+                color:
+                    isDarkTheme ? MyColors.whiteColor : MyColors.blackColor87,
+                shape: BoxShape.circle),
             child: Center(
               child: IconButton(
                   padding: const EdgeInsets.all(0),
@@ -339,7 +358,8 @@ class _SubscriptionScreenView2State
                   },
                   icon: Icon(
                     Icons.close_rounded,
-                    color: MyColors.whiteColor,
+                    color:
+                        isDarkTheme ? MyColors.greyColor : MyColors.whiteColor,
                     size: myParameters.pixelWidth * 22,
                   )),
             ),

@@ -36,6 +36,7 @@ class _SubscriptionDialogWidgetState
     ];
 
     return Dialog(
+      backgroundColor: MyColors.whiteColor,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10)),
       child: SizedBox(
@@ -122,6 +123,7 @@ class _SubscriptionDialogWidgetState
     return Text(
       lang[LangKey.dontWorry]!,
       style: TextStyle(
+          color: MyColors.blackColor87,
           fontFamily: MyConstants.fontLabel,
           fontWeight: FontWeight.w900,
           fontSize: myParameters.pixelWidth * 16),

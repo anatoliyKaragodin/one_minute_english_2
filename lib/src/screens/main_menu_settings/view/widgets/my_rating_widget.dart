@@ -2,6 +2,7 @@ import 'package:one_minute_english/src/screens/main_menu_settings/controller/set
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
 
+import '../../../../../main.dart';
 import '../../../../utils/my_parameters.dart';
 
 class MyRatingWidget extends ConsumerStatefulWidget {
@@ -30,7 +31,9 @@ class _MyRatingWidgetState extends ConsumerState<MyRatingWidget> {
                     'assets/ui_images/main_app/settings/star.png',
                     color: index <= widget.rating - 1
                         ? MyColors.orangeColor
-                        : MyColors.blackColor12,
+                        : isDarkTheme
+                            ? MyColors.whiteColor
+                            : MyColors.blackColor12,
                   ),
                 )),
       ),

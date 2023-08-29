@@ -1,3 +1,4 @@
+import 'package:one_minute_english/main.dart';
 import 'package:one_minute_english/src/screens/subscrubtion_screen/controller/subscrubtion_screen_controller.dart';
 import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
@@ -26,12 +27,6 @@ class _SubscriptionScreenViewState
     'assets/ui_images/sub/notification.png',
     'assets/ui_images/sub/star.png'
   ];
-  static final colors = [
-    MyColors.orangeColor,
-    MyColors.greenColor,
-    MyColors.blueColor,
-    MyColors.whiteColor
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +44,12 @@ class _SubscriptionScreenViewState
       lang[LangKey.nothingToPayNow],
       lang[LangKey.weWillRemindYouWhenTheTrialPeriodEndsCancelAnyMoment],
       lang[LangKey.yourSubscriptionWillBeActivatedOn],
+    ];
+    final colors = [
+      isDarkTheme ? MyColors.purpleColor : MyColors.orangeColor,
+      isDarkTheme ? MyColors.greyColorDarkTheme : MyColors.greenColor,
+      isDarkTheme ? MyColors.greyColorDarkTheme : MyColors.blueColor,
+      isDarkTheme ? MyColors.greyColorDarkTheme : MyColors.whiteColor
     ];
     return Scaffold(
       body: Column(
@@ -109,13 +110,9 @@ class _SubscriptionScreenViewState
                             height: myParameters.pixelHeight * 53,
                             width: myParameters.pixelWidth * 53,
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: colors[index],
-                                border: Border.all(
-                                    width: index == 3
-                                        ? myParameters.pixelWidth
-                                        : 0,
-                                    color: MyColors.textLiteGreyColor)),
+                              shape: BoxShape.circle,
+                              color: colors[index],
+                            ),
                             child: Padding(
                               padding:
                                   EdgeInsets.all(myParameters.pixelWidth * 14),
@@ -138,7 +135,9 @@ class _SubscriptionScreenViewState
                                   decoration: index == 0
                                       ? TextDecoration.lineThrough
                                       : TextDecoration.none,
-                                  decorationColor: Colors.black,
+                                  decorationColor: isDarkTheme
+                                      ? MyColors.whiteColor
+                                      : Colors.black,
                                   decorationThickness: 2,
                                 ),
                               )),

@@ -1,6 +1,7 @@
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
 
+import '../../../../../main.dart';
 import '../../../../utils/my_parameters.dart';
 
 class MySwitch extends StatelessWidget {
@@ -41,7 +42,9 @@ class MySwitch extends StatelessWidget {
                     BorderRadius.circular(myParameters.pixelHeight * 22),
                 color: isOn
                     ? backgroundColor ?? MyColors.greenColor
-                    : Colors.grey[200]),
+                    : isDarkTheme
+                        ? MyColors.greyColor
+                        : Colors.grey[200]),
           ),
           AnimatedPositioned(
             left: isOn ? myParameters.pixelWidth * 22 : 0,

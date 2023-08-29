@@ -1,3 +1,4 @@
+import 'package:one_minute_english/main.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
 
@@ -73,7 +74,9 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
                       shape: BoxShape.circle,
                       color: pageIndex - 1 == index
                           ? MyColors.mainColor
-                          : MyColors.blackColor87,
+                          : isDarkTheme
+                              ? MyColors.whiteColor
+                              : MyColors.blackColor87,
                     ),
                   )),
         ),
@@ -112,9 +115,15 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Divider(
-                      color: MyColors.blackColor87,
-                      thickness: myParameters.pixelHeight,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: myParameters.pixelWidth * 30),
+                      child: Divider(
+                        color: isDarkTheme
+                            ? MyColors.whiteColor
+                            : MyColors.blackColor87,
+                        thickness: myParameters.pixelHeight,
+                      ),
                     ),
                   ),
                 ],
@@ -130,7 +139,7 @@ class _IntroduceWidgetState extends ConsumerState<IntroduceWidget> {
       MyParameters myParameters, int pageIndex, List<String?> textList) {
     return Center(
       child: SizedBox(
-        width: myParameters.pixelWidth * 257,
+        width: myParameters.pixelWidth * 250,
         height: myParameters.pixelHeight * 170,
         child: Text(
           textList[pageIndex - 1]!,

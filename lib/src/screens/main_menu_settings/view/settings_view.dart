@@ -4,6 +4,7 @@ import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/m
 import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/my_switch.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 
+import '../../../../main.dart';
 import '../../../utils/app_language/app_language.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/my_colors.dart';
@@ -34,29 +35,19 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             buildBigText(
-              myParameters,
-              lang[LangKey.settings]!,
-            ),
+                myParameters, lang[LangKey.settings]!, MyColors.whiteColor),
             buildGet7DaysAccessContainer(myParameters, lang),
             buildBigText(
-              myParameters,
-              lang[LangKey.education]!,
-            ),
+                myParameters, lang[LangKey.education]!, MyColors.greyColor),
             buildEducationContainer(myParameters, lang),
             buildBigText(
-              myParameters,
-              lang[LangKey.trainings]!,
-            ),
+                myParameters, lang[LangKey.trainings]!, MyColors.greyColor),
             buildTrainingsContainer(myParameters, lang, settings),
             buildBigText(
-              myParameters,
-              lang[LangKey.feedback]!,
-            ),
+                myParameters, lang[LangKey.feedback]!, MyColors.greyColor),
             buildFeedbackContainer(myParameters, lang, settings.rating),
             buildBigText(
-              myParameters,
-              lang[LangKey.other]!,
-            ),
+                myParameters, lang[LangKey.other]!, MyColors.greyColor),
             buildOtherContainer(myParameters, lang),
           ],
         ),
@@ -70,7 +61,7 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
       height: myParameters.pixelHeight * 141,
       width: myParameters.pixelWidth * 390,
       decoration: BoxDecoration(
-          color: MyColors.whiteColor,
+          color: isDarkTheme ? MyColors.blackColor87 : MyColors.whiteColor,
           borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10),
           boxShadow: [
             BoxShadow(
@@ -92,11 +83,13 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
         height: myParameters.pixelHeight * 146,
         width: myParameters.pixelWidth * 390,
         decoration: BoxDecoration(
-            color: MyColors.whiteColor,
+            color:
+                isDarkTheme ? MyColors.backColorDarkTheme : MyColors.whiteColor,
             borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10),
             boxShadow: [
               BoxShadow(
-                  color: MyColors.textLiteGreyColor.withOpacity(0.6),
+                  color: MyColors.textLiteGreyColor
+                      .withOpacity(isDarkTheme ? 0 : 0.6),
                   blurRadius: myParameters.pixelWidth * 6)
             ]),
         child: Column(
@@ -106,7 +99,7 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
                 height: myParameters.pixelHeight * 63,
                 child: buildNormalText(
                     myParameters, lang[LangKey.themesForLearning]!, 16)),
-            Divider(),
+            const Divider(),
             SizedBox(
                 height: myParameters.pixelHeight * 63,
                 child: Column(
@@ -130,7 +123,8 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
         height: myParameters.pixelHeight * 132,
         width: myParameters.pixelWidth * 390,
         decoration: BoxDecoration(
-            color: MyColors.whiteColor,
+            color:
+                isDarkTheme ? MyColors.backColorDarkTheme : MyColors.whiteColor,
             borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10),
             boxShadow: [
               BoxShadow(
@@ -171,11 +165,13 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
         height: myParameters.pixelHeight * 219,
         width: myParameters.pixelWidth * 390,
         decoration: BoxDecoration(
-            color: MyColors.whiteColor,
+            color:
+                isDarkTheme ? MyColors.backColorDarkTheme : MyColors.whiteColor,
             borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10),
             boxShadow: [
               BoxShadow(
-                  color: MyColors.textLiteGreyColor.withOpacity(0.6),
+                  color: MyColors.textLiteGreyColor
+                      .withOpacity(isDarkTheme ? 0 : 0.6),
                   blurRadius: myParameters.pixelWidth * 6)
             ]),
         child: Column(
@@ -208,11 +204,13 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
         height: myParameters.pixelHeight * 219,
         width: myParameters.pixelWidth * 390,
         decoration: BoxDecoration(
-            color: MyColors.whiteColor,
+            color:
+                isDarkTheme ? MyColors.backColorDarkTheme : MyColors.whiteColor,
             borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10),
             boxShadow: [
               BoxShadow(
-                  color: MyColors.textLiteGreyColor.withOpacity(0.6),
+                  color: MyColors.textLiteGreyColor
+                      .withOpacity(isDarkTheme ? 0 : 0.6),
                   blurRadius: myParameters.pixelWidth * 6)
             ]),
         child: Column(
@@ -261,7 +259,7 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
         child: Text(
           text,
           style: TextStyle(
-              color: MyColors.blackColor87,
+              color: isDarkTheme ? MyColors.whiteColor : MyColors.blackColor87,
               fontFamily: MyConstants.fontLabel,
               fontWeight: FontWeight.w400,
               fontSize: myParameters.pixelWidth * fontSize),
@@ -270,13 +268,14 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
     );
   }
 
-  Padding buildBigText(MyParameters myParameters, String text) {
+  Padding buildBigText(
+      MyParameters myParameters, String text, Color? darkColor) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: myParameters.pixelHeight * 45),
       child: Text(
         text,
         style: TextStyle(
-            color: MyColors.blackColor87,
+            color: isDarkTheme ? darkColor : MyColors.blackColor87,
             fontFamily: MyConstants.fontLabel,
             fontWeight: FontWeight.w900,
             fontSize: myParameters.pixelWidth * 22),
@@ -309,6 +308,8 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
           Text(
             lang[LangKey.get7moreDays]!,
             style: TextStyle(
+                color:
+                    isDarkTheme ? MyColors.whiteColor : MyColors.blackColor87,
                 fontFamily: MyConstants.fontLabel,
                 fontSize: myParameters.pixelWidth * 18,
                 fontWeight: FontWeight.w900),
@@ -318,12 +319,13 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
             child: Text(
               lang[LangKey.lastDayOfAccess]!,
               style: TextStyle(
+                  color: MyColors.textLiteGreyColor,
                   fontFamily: MyConstants.fontLabel,
                   fontSize: myParameters.pixelWidth * 12),
             ),
           ),
           MyColorButtonWidget(
-            color: MyColors.greenColor,
+            color: MyColors.mainColor,
             func: () => null,
             text: lang[LangKey.get]!,
             padding: 0,

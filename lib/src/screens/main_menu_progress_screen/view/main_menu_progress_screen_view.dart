@@ -1,6 +1,7 @@
 import 'package:one_minute_english/src/screens/main_menu_progress_screen/view/widgets/my_progress_circle_indicator.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 
+import '../../../../main.dart';
 import '../../../utils/app_language/app_language.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/my_colors.dart';
@@ -52,7 +53,7 @@ class _MainMenuProgressScreenViewState
       child: Text(
         lang[LangKey.myWords]!,
         style: TextStyle(
-            color: MyColors.blackColor87,
+            color: isDarkTheme ? MyColors.whiteColor : MyColors.blackColor87,
             fontWeight: FontWeight.w400,
             fontFamily: MyConstants.fontLabel,
             fontSize: myParameters.pixelWidth * 16),
@@ -69,11 +70,13 @@ class _MainMenuProgressScreenViewState
       child: Container(
         height: myParameters.pixelHeight * 222,
         decoration: BoxDecoration(
-            color: MyColors.whiteColor,
+            color: MyColors.whiteColor70,
             borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10),
             boxShadow: [
               BoxShadow(
-                  color: MyColors.textLiteGreyColor.withOpacity(0.25),
+                  color: isDarkTheme
+                      ? MyColors.blackColor87!
+                      : MyColors.textLiteGreyColor.withOpacity(0.25),
                   blurRadius: 4)
             ]),
         child: Column(
@@ -81,60 +84,83 @@ class _MainMenuProgressScreenViewState
           children: List.generate(
               3,
               (index) => Stack(children: [
-                    SizedBox(
-                      height: myParameters.pixelHeight * 73.5,
-                      child: Padding(
-                        padding:
-                            EdgeInsets.only(left: myParameters.pixelWidth * 23),
-                        child: Image.asset(
-                          imgs[index],
-                          height: myParameters.pixelHeight * 40,
-                          width: myParameters.pixelWidth * 40,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
+                    Positioned(
+                      left: -1,
+                      top: -1,
                       child: Container(
-                        height: myParameters.pixelHeight * 73.5,
-                        width: myParameters.pixelWidth * (378 - 92),
+                        height: myParameters.pixelHeight * 75,
+                        width: myParameters.pixelWidth * 85,
                         decoration: BoxDecoration(
-                          color: MyColors.mainColor,
+                          color: isDarkTheme
+                              ? MyColors.backColorDarkTheme
+                              : MyColors.whiteColor,
                           borderRadius: BorderRadius.only(
-                              bottomRight: index == 2
+                              bottomLeft: index == 2
                                   ? Radius.circular(
                                       myParameters.pixelHeight * 10)
                                   : Radius.zero,
-                              topRight: index == 0
+                              topLeft: index == 0
                                   ? Radius.circular(
                                       myParameters.pixelHeight * 10)
                                   : Radius.zero),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: myParameters.pixelWidth * 30),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                texts[index]!,
-                                style: TextStyle(
-                                    color: MyColors.whiteColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: MyConstants.fontLabel,
-                                    fontSize: myParameters.pixelWidth * 16),
-                              ),
-                              Text(
-                                '4',
-                                style: TextStyle(
-                                    color: MyColors.whiteColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: MyConstants.fontLabel,
-                                    fontSize: myParameters.pixelWidth * 16),
-                              ),
-                            ],
+                          padding: EdgeInsets.all(myParameters.pixelWidth * 20),
+                          child: Image.asset(
+                            imgs[index],
+                            height: myParameters.pixelHeight * 40,
+                            width: myParameters.pixelWidth * 40,
                           ),
                         ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Column(
+                        children: [
+                          Container(
+                            height: myParameters.pixelHeight * 73.5,
+                            width: myParameters.pixelWidth * (378 - 92),
+                            decoration: BoxDecoration(
+                              color: MyColors.mainColor,
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: index == 2
+                                      ? Radius.circular(
+                                          myParameters.pixelHeight * 10)
+                                      : Radius.zero,
+                                  topRight: index == 0
+                                      ? Radius.circular(
+                                          myParameters.pixelHeight * 10)
+                                      : Radius.zero),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: myParameters.pixelWidth * 30),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    texts[index]!,
+                                    style: TextStyle(
+                                        color: MyColors.whiteColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: MyConstants.fontLabel,
+                                        fontSize: myParameters.pixelWidth * 16),
+                                  ),
+                                  Text(
+                                    '4',
+                                    style: TextStyle(
+                                        color: MyColors.whiteColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: MyConstants.fontLabel,
+                                        fontSize: myParameters.pixelWidth * 16),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ])),
@@ -150,7 +176,9 @@ class _MainMenuProgressScreenViewState
       child: Container(
           height: myParameters.pixelHeight * 141,
           decoration: BoxDecoration(
-              color: MyColors.whiteColor,
+              color: isDarkTheme
+                  ? MyColors.backColorDarkTheme
+                  : MyColors.whiteColor,
               borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10),
               boxShadow: [
                 BoxShadow(
@@ -170,7 +198,9 @@ class _MainMenuProgressScreenViewState
                     Text(
                       lang[LangKey.lookingByDate]!,
                       style: TextStyle(
-                          color: MyColors.blackColor87,
+                          color: isDarkTheme
+                              ? MyColors.whiteColor
+                              : MyColors.blackColor87,
                           fontWeight: FontWeight.w900,
                           fontFamily: MyConstants.fontLabel,
                           fontSize: myParameters.pixelWidth * 18),
@@ -216,7 +246,8 @@ class _MainMenuProgressScreenViewState
           Text(
             lang[LangKey.progress]!,
             style: TextStyle(
-                color: MyColors.blackColor87,
+                color:
+                    isDarkTheme ? MyColors.whiteColor : MyColors.blackColor87,
                 fontWeight: FontWeight.w900,
                 fontFamily: MyConstants.fontLabel,
                 fontSize: myParameters.pixelWidth * 22),

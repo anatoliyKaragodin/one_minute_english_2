@@ -1,3 +1,4 @@
+import 'package:one_minute_english/main.dart';
 import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/controller/choose_level_and_themes_controller.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_widgets/my_line_indicator_widget.dart';
@@ -106,7 +107,7 @@ class _ListOfLearningThemesWidgetState
     ];
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemCount: listOfThemes.length,
+        itemCount: listOfThemes.length - 1,
         itemBuilder: (BuildContext context, int index) {
           return buildThemeMainContainer(myParameters, index,
               themeColors[sortedList[index]], themesLabels, sortedList);
@@ -128,11 +129,14 @@ class _ListOfLearningThemesWidgetState
             Container(
               height: myParameters.pixelHeight * 136,
               decoration: BoxDecoration(
-                  color: MyColors.whiteColor,
+                  color: isDarkTheme
+                      ? MyColors.backColorDarkTheme
+                      : MyColors.whiteColor,
                   boxShadow: [
                     BoxShadow(
                         blurRadius: myParameters.pixelWidth * 4,
-                        color: MyColors.textLiteGreyColor.withOpacity(0.6))
+                        color: MyColors.textLiteGreyColor
+                            .withOpacity(isDarkTheme ? 0 : 0.6))
                   ],
                   borderRadius:
                       BorderRadius.circular(myParameters.pixelWidth * 10)),
@@ -186,7 +190,7 @@ class _ListOfLearningThemesWidgetState
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  MyLineIndicatorWidget(
+                  const MyLineIndicatorWidget(
                     value: 0.2,
                   ),
                   Text(

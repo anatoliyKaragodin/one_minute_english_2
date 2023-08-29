@@ -1,3 +1,4 @@
+import 'package:one_minute_english/main.dart';
 import 'package:one_minute_english/src/screens/main_app_menu_screen/controller/main_app_menu_controller.dart';
 import 'package:one_minute_english/src/screens/main_menu_education_screen/view/main_menu_education_screen_view.dart';
 import 'package:one_minute_english/src/screens/main_menu_progress_screen/view/main_menu_progress_screen_view.dart';
@@ -71,8 +72,13 @@ class _MainAppMenuScreenViewState extends ConsumerState<MainAppMenuScreenView> {
       width: myParameters.width,
       height: myParameters.pixelHeight * 89,
       decoration: BoxDecoration(
-          color: MyColors.whiteColor,
-          boxShadow: [BoxShadow(blurRadius: 7, color: MyColors.greyColorLite!)],
+          color:
+              isDarkTheme ? MyColors.backColorDarkTheme : MyColors.whiteColor,
+          boxShadow: [
+            BoxShadow(
+                blurRadius: 7,
+                color: MyColors.greyColorLite!.withOpacity(isDarkTheme ? 0 : 1))
+          ],
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(myParameters.pixelWidth * 30),
               topRight: Radius.circular(myParameters.pixelWidth * 30))),
@@ -95,7 +101,9 @@ class _MainAppMenuScreenViewState extends ConsumerState<MainAppMenuScreenView> {
                           icons[index],
                           color: index == menuIndex
                               ? MyColors.mainColor
-                              : MyColors.blackColor87,
+                              : isDarkTheme
+                                  ? MyColors.whiteColor
+                                  : MyColors.blackColor87,
                           height: myParameters.pixelHeight * 26,
                           width: myParameters.pixelWidth * 26,
                         ),
@@ -107,7 +115,9 @@ class _MainAppMenuScreenViewState extends ConsumerState<MainAppMenuScreenView> {
                             style: TextStyle(
                                 color: index == menuIndex
                                     ? MyColors.mainColor
-                                    : MyColors.blackColor87,
+                                    : isDarkTheme
+                                        ? MyColors.whiteColor
+                                        : MyColors.blackColor87,
                                 fontFamily: MyConstants.fontLabel,
                                 fontSize: myParameters.pixelWidth * 14),
                           ),

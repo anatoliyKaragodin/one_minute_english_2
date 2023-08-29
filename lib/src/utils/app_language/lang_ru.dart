@@ -9,7 +9,7 @@ class LangRu {
     LangKey.introduceText2:
         'В основе - методика запоминания «Fast brain» и улучшенная технология интервального повторения',
     LangKey.introduceText3:
-        'Учи по 8 новых слов в день. И уже через месяц Ты запомнишь более 250 слов',
+        'Учи по 8 новых слов в день. И уже через месяц ты запомнишь более 250 слов',
     LangKey.introduceText4:
         'Приложение адаптируется под твои интересы, результаты и регулярность занятий',
     LangKey.selectAll: 'Выбрать все',
@@ -33,7 +33,7 @@ class LangRu {
     LangKey.turnOnRemindersToPracticeEnglish:
         'Включи напоминание для практики английского',
     LangKey.study7daysForFree: 'Учись 7 дней бесплатно',
-    LangKey.trainingProgramPreparation: 'Подготовка программы',
+    LangKey.trainingProgramPreparation: 'Подготовка программы обучения',
     LangKey.todayFullAccess: 'Сегодня. Полный доступ',
     LangKey.nothingToPayNow: 'Ничего не нужно платить сейчас',
     LangKey.day5Notification: 'День 5. Напоминание',
@@ -44,7 +44,7 @@ class LangRu {
     LangKey.continueButton: 'Продолжить',
     LangKey.after28days: 'Через 28 дней',
     LangKey.youWillNotWasteTimeLookingForTheRightWord:
-        'Вы не будете тратить время на поиск подходящего слова',
+        'ты не будешь терять время на поиски нужного слова',
     LangKey.oneMonth: '1 месяц',
     LangKey.twelveMonths: '12 месяцев',
     LangKey.monthShort: 'мес.',

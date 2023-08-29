@@ -1,8 +1,7 @@
 import 'dart:math';
 
-import 'package:carousel_slider/carousel_options.dart';
+import 'package:one_minute_english/main.dart';
 import 'package:one_minute_english/src/screens/set_notification_screen/controller/set_notification_screen_controller.dart';
-import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
 
@@ -73,7 +72,9 @@ class _MyTimeNotificationCarouselWidgetState
                 style: TextStyle(
                   color: position == index
                       ? MyColors.whiteColor
-                      : Colors.black.withOpacity(opacity),
+                      : isDarkTheme
+                          ? MyColors.whiteColor!.withOpacity(opacity)
+                          : Colors.black.withOpacity(opacity),
                   fontWeight: FontWeight.w700,
                   fontSize: myParameters.pixelWidth *
                       25, // You can adjust the font size as needed

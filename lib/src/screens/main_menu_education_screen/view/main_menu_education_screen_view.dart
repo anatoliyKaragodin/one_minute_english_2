@@ -1,4 +1,4 @@
-import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/controller/choose_level_and_themes_controller.dart';
+import 'package:one_minute_english/main.dart';
 import 'package:one_minute_english/src/screens/main_menu_education_screen/view/widgets/list_of_learning_themes_widget.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
@@ -66,11 +66,13 @@ class _MainMenuEducationScreenViewState
         height: myParameters.pixelHeight * 197,
         width: myParameters.pixelWidth * 390,
         decoration: BoxDecoration(
-            color: MyColors.whiteColor,
+            color:
+                isDarkTheme ? MyColors.backColorDarkTheme : MyColors.whiteColor,
             borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10),
             boxShadow: [
               BoxShadow(
-                  color: MyColors.textLiteGreyColor.withOpacity(0.6),
+                  color: MyColors.textLiteGreyColor
+                      .withOpacity(isDarkTheme ? 0 : 0.6),
                   blurRadius: myParameters.pixelWidth * 6)
             ]),
         child: Stack(

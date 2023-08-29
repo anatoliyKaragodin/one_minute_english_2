@@ -12,6 +12,9 @@ class MyColors {
   static Color? blackColor87 = Colors.black87;
   static Color? blackColor12 = Colors.black12;
   static Color? greyColor = Colors.grey[500];
+  static Color greyColorDarkTheme = Colors.grey[700]!;
+  static Color backColorDarkTheme = const Color(0xFF242426);
+  static Color purpleColor = const Color(0xFF906FEE);
   static Color? greyColorLite = const Color(0xFFe2dfe6);
   static Color greenColor = const Color(0xFF2FCD7F);
   static Color greenDarkColor = const Color(0xFF44AB02);
