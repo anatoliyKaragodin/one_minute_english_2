@@ -3,6 +3,9 @@ class Settings {
   final bool pronunciationOn;
   final bool answerSoundOn;
   final int rating;
+  final int pageIndex;
+  final bool notificationsIsOn;
+  final int wordsNumberIndex;
 
 //<editor-fold desc="Data Methods">
   const Settings({
@@ -10,6 +13,9 @@ class Settings {
     required this.pronunciationOn,
     required this.answerSoundOn,
     required this.rating,
+    required this.pageIndex,
+    required this.notificationsIsOn,
+    required this.wordsNumberIndex,
   });
 
   @override
@@ -20,14 +26,20 @@ class Settings {
           listeningOn == other.listeningOn &&
           pronunciationOn == other.pronunciationOn &&
           answerSoundOn == other.answerSoundOn &&
-          rating == other.rating);
+          rating == other.rating &&
+          pageIndex == other.pageIndex &&
+          notificationsIsOn == other.notificationsIsOn &&
+          wordsNumberIndex == other.wordsNumberIndex);
 
   @override
   int get hashCode =>
       listeningOn.hashCode ^
       pronunciationOn.hashCode ^
       answerSoundOn.hashCode ^
-      rating.hashCode;
+      rating.hashCode ^
+      pageIndex.hashCode ^
+      notificationsIsOn.hashCode ^
+      wordsNumberIndex.hashCode;
 
   @override
   String toString() {
@@ -36,6 +48,9 @@ class Settings {
         ' pronunciationOn: $pronunciationOn,' +
         ' answerSoundOn: $answerSoundOn,' +
         ' rating: $rating,' +
+        ' pageIndex: $pageIndex,' +
+        ' notificationsIsOn: $notificationsIsOn,' +
+        ' wordsNumberIndex: $wordsNumberIndex,' +
         '}';
   }
 
@@ -44,12 +59,18 @@ class Settings {
     bool? pronunciationOn,
     bool? answerSoundOn,
     int? rating,
+    int? pageIndex,
+    bool? notificationsIsOn,
+    int? wordsNumberIndex,
   }) {
     return Settings(
       listeningOn: listeningOn ?? this.listeningOn,
       pronunciationOn: pronunciationOn ?? this.pronunciationOn,
       answerSoundOn: answerSoundOn ?? this.answerSoundOn,
       rating: rating ?? this.rating,
+      pageIndex: pageIndex ?? this.pageIndex,
+      notificationsIsOn: notificationsIsOn ?? this.notificationsIsOn,
+      wordsNumberIndex: wordsNumberIndex ?? this.wordsNumberIndex,
     );
   }
 
@@ -59,6 +80,9 @@ class Settings {
       'pronunciationOn': this.pronunciationOn,
       'answerSoundOn': this.answerSoundOn,
       'rating': this.rating,
+      'pageIndex': this.pageIndex,
+      'notificationsIsOn': this.notificationsIsOn,
+      'wordsNumberIndex': this.wordsNumberIndex,
     };
   }
 
@@ -68,6 +92,9 @@ class Settings {
       pronunciationOn: map['pronunciationOn'] as bool,
       answerSoundOn: map['answerSoundOn'] as bool,
       rating: map['rating'] as int,
+      pageIndex: map['pageIndex'] as int,
+      notificationsIsOn: map['notificationsIsOn'] as bool,
+      wordsNumberIndex: map['wordsNumberIndex'] as int,
     );
   }
 

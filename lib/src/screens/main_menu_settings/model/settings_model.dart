@@ -7,7 +7,10 @@ class SettingsModel extends StateNotifier<Settings> {
             listeningOn: true,
             pronunciationOn: true,
             answerSoundOn: true,
-            rating: 5)) {
+            rating: 5,
+            notificationsIsOn: true,
+            pageIndex: 0,
+            wordsNumberIndex: 0)) {
     initState();
   }
 
@@ -25,5 +28,17 @@ class SettingsModel extends StateNotifier<Settings> {
 
   void setRating(int rating) {
     state = state.copyWith(rating: rating);
+  }
+
+  void changeNotificationsIsOn() {
+    state = state.copyWith(notificationsIsOn: !state.notificationsIsOn);
+  }
+
+  void setPageIndex(int pageIndex) {
+    state = state.copyWith(pageIndex: pageIndex);
+  }
+
+  void setWordsNumberIndex(int index) {
+    state = state.copyWith(wordsNumberIndex: index);
   }
 }

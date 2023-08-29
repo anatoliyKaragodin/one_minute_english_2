@@ -1,4 +1,5 @@
 import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/view/choose_level_and_themes_screen_view.dart';
+import 'package:one_minute_english/src/screens/main_app_menu_screen/view/main_app_menu_screen_view.dart';
 import 'package:one_minute_english/src/services/notifications_service.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/screens/start_screen/view/start_screen_view.dart';
@@ -29,12 +30,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: MyColors.blackColor87,
+        scaffoldBackgroundColor:
+            isDarkTheme ? MyColors.blackColor87 : MyColors.whiteColor,
         colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.deepPurple, brightness: systemBrightness),
         useMaterial3: false,
       ),
-      home: const StartScreenView(),
+      home: const MainAppMenuScreenView(),
       routes: {
         const StartScreenView().route: (context) => const StartScreenView(),
         const ChooseLvlAndThemesScreenView().route: (context) =>

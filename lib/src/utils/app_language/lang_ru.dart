@@ -90,5 +90,7 @@ class LangRu {
     LangKey.other: 'Другое',
     LangKey.notifications: 'Напоминания',
     LangKey.privacyPolicy: 'Политика конфиденциальности',
+    LangKey.chooseHowManyWordsYouWantToLearn:
+        'Выбери, сколько слов в день ты хочешь изучать'
   };
 }

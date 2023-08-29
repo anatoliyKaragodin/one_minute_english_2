@@ -15,4 +15,16 @@ class SettingsController {
   static onRatingTap(WidgetRef ref, int rating) {
     ref.read(settingsProvider.notifier).setRating(rating);
   }
+
+  static onTapNotificationsSwitch(WidgetRef ref) {
+    ref.read(settingsProvider.notifier).changeNotificationsIsOn();
+  }
+
+  static onTapIndexPage(WidgetRef ref, int index) {
+    ref.read(settingsProvider.notifier).setPageIndex(index);
+  }
+
+  static void onTapWordsNumberIndex(WidgetRef ref, int index) {
+    ref.read(settingsProvider.notifier).setWordsNumberIndex(index);
+  }
 }

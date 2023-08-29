@@ -148,5 +148,6 @@ enum LangKey {
   rateTheApp,
   other,
   notifications,
-  privacyPolicy
+  privacyPolicy,
+  chooseHowManyWordsYouWantToLearn
 }

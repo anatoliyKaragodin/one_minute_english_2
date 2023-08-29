@@ -1,7 +1,10 @@
 import 'package:one_minute_english/src/screens/main_menu_settings/controller/settings_controller.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/model/settings.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/pages/choose_themes_settings_page.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/pages/notifications_view.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/my_rating_widget.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/my_switch.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/pages/words_per_day_view.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 
 import '../../../../main.dart';
@@ -20,12 +23,30 @@ class SettingsView extends ConsumerStatefulWidget {
 }
 
 class _SettingsViewState extends ConsumerState<SettingsView> {
+  static const numberOfWords = [4, 8, 10, 15, 20, 30];
+
+
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
     final langIndex = ref.watch(startScreenProvider).chosenLanguageIndex;
     final lang = AppLanguage.listOfLanguages[langIndex];
     final settings = ref.watch(settingsProvider);
+    final settingsPages = [
+      buildMainSettings(myParameters, lang, settings),
+      const NotificationsView(),
+      const ChooseThemesSettingsView(),
+      const WordsPerDayView()
+    ];
+    return PageView.builder(
+        itemCount: settingsPages.length,
+        itemBuilder: (BuildContext context, int index) {
+          return settingsPages[settings.pageIndex];
+        });
+  }
+
+  SingleChildScrollView buildMainSettings(
+      MyParameters myParameters, Map<LangKey, String> lang, Settings settings) {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -39,7 +60,7 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
             buildGet7DaysAccessContainer(myParameters, lang),
             buildBigText(
                 myParameters, lang[LangKey.education]!, MyColors.greyColor),
-            buildEducationContainer(myParameters, lang),
+            buildEducationContainer(myParameters, lang, settings.wordsNumberIndex),
             buildBigText(
                 myParameters, lang[LangKey.trainings]!, MyColors.greyColor),
             buildTrainingsContainer(myParameters, lang, settings),
@@ -78,7 +99,7 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
   }
 
   Container buildEducationContainer(
-      MyParameters myParameters, Map<LangKey, String> lang) {
+      MyParameters myParameters, Map<LangKey, String> lang, int wordsNumberIndex) {
     return Container(
         height: myParameters.pixelHeight * 146,
         width: myParameters.pixelWidth * 390,
@@ -97,21 +118,27 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
           children: [
             SizedBox(
                 height: myParameters.pixelHeight * 63,
-                child: buildNormalText(
-                    myParameters, lang[LangKey.themesForLearning]!, 16)),
+                child: InkWell(
+                  onTap: () {SettingsController.onTapIndexPage(ref, 2);},
+                  child: buildNormalText(
+                      myParameters, lang[LangKey.themesForLearning]!, 16),
+                )),
             const Divider(),
             SizedBox(
                 height: myParameters.pixelHeight * 63,
-                child: Column(
-                  children: [
-                    buildNormalText(
-                        myParameters, lang[LangKey.wordsPerDay]!, 16),
-                    SizedBox(
-                      height: myParameters.pixelHeight * 11,
-                    ),
-                    buildNormalText(
-                        myParameters, '8 ${lang[LangKey.words]!}', 12),
-                  ],
+                child: InkWell(
+                  onTap: () {SettingsController.onTapIndexPage(ref, 3);},
+                  child: Column(
+                    children: [
+                      buildNormalText(
+                          myParameters, lang[LangKey.wordsPerDay]!, 16),
+                      SizedBox(
+                        height: myParameters.pixelHeight * 11,
+                      ),
+                      buildNormalText(
+                          myParameters, '${numberOfWords[wordsNumberIndex]} ${lang[LangKey.words]!}', 12),
+                    ],
+                  ),
                 )),
           ],
         ));
@@ -201,7 +228,7 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
   Container buildOtherContainer(
       MyParameters myParameters, Map<LangKey, String> lang) {
     return Container(
-        height: myParameters.pixelHeight * 219,
+        height: myParameters.pixelHeight * 296.3,
         width: myParameters.pixelWidth * 390,
         decoration: BoxDecoration(
             color:
@@ -218,13 +245,29 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
           children: [
             SizedBox(
                 height: myParameters.pixelHeight * 60,
-                child: buildNormalText(
-                    myParameters, lang[LangKey.notifications]!, 16)),
+                child: InkWell(
+                  onTap: () {},
+                  child: buildNormalText(
+                      myParameters, lang[LangKey.restorePurchases]!, 16),
+                )),
             const Divider(),
             SizedBox(
                 height: myParameters.pixelHeight * 60,
-                child: buildNormalText(
-                    myParameters, lang[LangKey.termsOfUse]!, 16)),
+                child: InkWell(
+                  onTap: () {
+                    SettingsController.onTapIndexPage(ref, 1);
+                  },
+                  child: buildNormalText(
+                      myParameters, lang[LangKey.notifications]!, 16),
+                )),
+            const Divider(),
+            SizedBox(
+                height: myParameters.pixelHeight * 60,
+                child: InkWell(
+                  onTap: () {},
+                  child: buildNormalText(
+                      myParameters, lang[LangKey.termsOfUse]!, 16),
+                )),
             const Divider(),
             SizedBox(
                 height: myParameters.pixelHeight * 60,

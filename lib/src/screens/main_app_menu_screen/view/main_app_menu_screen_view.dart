@@ -102,7 +102,7 @@ class _MainAppMenuScreenViewState extends ConsumerState<MainAppMenuScreenView> {
                           color: index == menuIndex
                               ? MyColors.mainColor
                               : isDarkTheme
-                                  ? MyColors.whiteColor
+                                  ? MyColors.textLiteGreyColor
                                   : MyColors.blackColor87,
                           height: myParameters.pixelHeight * 26,
                           width: myParameters.pixelWidth * 26,
@@ -116,7 +116,7 @@ class _MainAppMenuScreenViewState extends ConsumerState<MainAppMenuScreenView> {
                                 color: index == menuIndex
                                     ? MyColors.mainColor
                                     : isDarkTheme
-                                        ? MyColors.whiteColor
+                                        ? MyColors.textLiteGreyColor
                                         : MyColors.blackColor87,
                                 fontFamily: MyConstants.fontLabel,
                                 fontSize: myParameters.pixelWidth * 14),
