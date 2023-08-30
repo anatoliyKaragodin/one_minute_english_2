@@ -1,16 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/model/settings.dart';
 
 class SettingsModel extends StateNotifier<Settings> {
   SettingsModel()
-      : super(const Settings(
+      : super(Settings(
             listeningOn: true,
             pronunciationOn: true,
             answerSoundOn: true,
             rating: 5,
             notificationsIsOn: true,
             pageIndex: 0,
-            wordsNumberIndex: 0)) {
+            wordsNumberIndex: 0,
+            currentDate: Jiffy.now(),
+            selectedDate: Jiffy.now())) {
     initState();
   }
 

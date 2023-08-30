@@ -1,3 +1,5 @@
+import 'package:jiffy/jiffy.dart';
+
 class Settings {
   final bool listeningOn;
   final bool pronunciationOn;
@@ -6,6 +8,8 @@ class Settings {
   final int pageIndex;
   final bool notificationsIsOn;
   final int wordsNumberIndex;
+  final Jiffy currentDate;
+  final Jiffy selectedDate;
 
 //<editor-fold desc="Data Methods">
   const Settings({
@@ -16,6 +20,8 @@ class Settings {
     required this.pageIndex,
     required this.notificationsIsOn,
     required this.wordsNumberIndex,
+    required this.currentDate,
+    required this.selectedDate,
   });
 
   @override
@@ -29,7 +35,9 @@ class Settings {
           rating == other.rating &&
           pageIndex == other.pageIndex &&
           notificationsIsOn == other.notificationsIsOn &&
-          wordsNumberIndex == other.wordsNumberIndex);
+          wordsNumberIndex == other.wordsNumberIndex &&
+          currentDate == other.currentDate &&
+          selectedDate == other.selectedDate);
 
   @override
   int get hashCode =>
@@ -39,7 +47,9 @@ class Settings {
       rating.hashCode ^
       pageIndex.hashCode ^
       notificationsIsOn.hashCode ^
-      wordsNumberIndex.hashCode;
+      wordsNumberIndex.hashCode ^
+      currentDate.hashCode ^
+      selectedDate.hashCode;
 
   @override
   String toString() {
@@ -51,6 +61,8 @@ class Settings {
         ' pageIndex: $pageIndex,' +
         ' notificationsIsOn: $notificationsIsOn,' +
         ' wordsNumberIndex: $wordsNumberIndex,' +
+        ' currentDate: $currentDate,' +
+        ' selectedDate: $selectedDate,' +
         '}';
   }
 
@@ -62,6 +74,8 @@ class Settings {
     int? pageIndex,
     bool? notificationsIsOn,
     int? wordsNumberIndex,
+    Jiffy? currentDate,
+    Jiffy? selectedDate,
   }) {
     return Settings(
       listeningOn: listeningOn ?? this.listeningOn,
@@ -71,6 +85,8 @@ class Settings {
       pageIndex: pageIndex ?? this.pageIndex,
       notificationsIsOn: notificationsIsOn ?? this.notificationsIsOn,
       wordsNumberIndex: wordsNumberIndex ?? this.wordsNumberIndex,
+      currentDate: currentDate ?? this.currentDate,
+      selectedDate: selectedDate ?? this.selectedDate,
     );
   }
 
@@ -83,6 +99,8 @@ class Settings {
       'pageIndex': this.pageIndex,
       'notificationsIsOn': this.notificationsIsOn,
       'wordsNumberIndex': this.wordsNumberIndex,
+      'currentDate': this.currentDate,
+      'selectedDate': this.selectedDate,
     };
   }
 
@@ -95,6 +113,8 @@ class Settings {
       pageIndex: map['pageIndex'] as int,
       notificationsIsOn: map['notificationsIsOn'] as bool,
       wordsNumberIndex: map['wordsNumberIndex'] as int,
+      currentDate: map['currentDate'] as Jiffy,
+      selectedDate: map['selectedDate'] as Jiffy,
     );
   }
 
