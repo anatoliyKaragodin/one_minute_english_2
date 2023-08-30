@@ -91,6 +91,10 @@ class LangRu {
     LangKey.notifications: 'Напоминания',
     LangKey.privacyPolicy: 'Политика конфиденциальности',
     LangKey.chooseHowManyWordsYouWantToLearn:
-        'Выбери, сколько слов в день ты хочешь изучать'
+        'Выбери, сколько слов в день ты хочешь изучать',
+    LangKey.whatWouldYouLikeToChange:
+        'Что бы ты хотел поменять или улучшить в Bright',
+    LangKey.yourMessage: 'Твое сообщение',
+    LangKey.send: 'Отправить',
   };
 }

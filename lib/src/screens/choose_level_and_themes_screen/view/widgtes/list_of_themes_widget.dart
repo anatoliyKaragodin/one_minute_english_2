@@ -9,11 +9,7 @@ import '../../../../utils/my_parameters.dart';
 class ListOfThemesWidget extends ConsumerStatefulWidget {
   final int lang;
   final double? height;
-  const ListOfThemesWidget({
-    super.key,
-    required this.lang,
-    this.height
-  });
+  const ListOfThemesWidget({super.key, required this.lang, this.height});
 
   @override
   ConsumerState createState() => _ListOfThemesWidgetState();
@@ -102,7 +98,7 @@ class _ListOfThemesWidgetState extends ConsumerState<ListOfThemesWidget> {
       AppLanguage.listOfLanguages[widget.lang][LangKey.phrasalVerbs],
     ];
     return SizedBox(
-      height: myParameters.pixelHeight * (widget.height??670),
+      height: myParameters.pixelHeight * (widget.height ?? 670),
       child: ListView.builder(
           physics: const BouncingScrollPhysics(),
           itemCount: 21,

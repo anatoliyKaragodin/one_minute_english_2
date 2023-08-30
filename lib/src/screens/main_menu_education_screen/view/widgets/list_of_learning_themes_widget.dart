@@ -107,7 +107,7 @@ class _ListOfLearningThemesWidgetState
     ];
     return ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemCount: listOfThemes.length - 1,
+        itemCount: sortedList.length,
         itemBuilder: (BuildContext context, int index) {
           return buildThemeMainContainer(myParameters, index,
               themeColors[sortedList[index]], themesLabels, sortedList);

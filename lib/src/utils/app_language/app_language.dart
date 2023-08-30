@@ -149,5 +149,8 @@ enum LangKey {
   other,
   notifications,
   privacyPolicy,
-  chooseHowManyWordsYouWantToLearn
+  chooseHowManyWordsYouWantToLearn,
+  whatWouldYouLikeToChange,
+  yourMessage,
+  send
 }

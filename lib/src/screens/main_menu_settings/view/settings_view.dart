@@ -1,10 +1,11 @@
 import 'package:one_minute_english/src/screens/main_menu_settings/controller/settings_controller.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/model/settings.dart';
-import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/pages/choose_themes_settings_page.dart';
-import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/pages/notifications_view.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/view/pages/choose_themes_settings_page.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/view/pages/feedback_view.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/view/pages/notifications_view.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/view/pages/words_per_day_view.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/my_rating_widget.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/my_switch.dart';
-import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/pages/words_per_day_view.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 
 import '../../../../main.dart';
@@ -25,7 +26,6 @@ class SettingsView extends ConsumerStatefulWidget {
 class _SettingsViewState extends ConsumerState<SettingsView> {
   static const numberOfWords = [4, 8, 10, 15, 20, 30];
 
-
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
@@ -36,7 +36,8 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
       buildMainSettings(myParameters, lang, settings),
       const NotificationsView(),
       const ChooseThemesSettingsView(),
-      const WordsPerDayView()
+      const WordsPerDayView(),
+      const FeedbackView()
     ];
     return PageView.builder(
         itemCount: settingsPages.length,
@@ -60,7 +61,8 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
             buildGet7DaysAccessContainer(myParameters, lang),
             buildBigText(
                 myParameters, lang[LangKey.education]!, MyColors.greyColor),
-            buildEducationContainer(myParameters, lang, settings.wordsNumberIndex),
+            buildEducationContainer(
+                myParameters, lang, settings.wordsNumberIndex),
             buildBigText(
                 myParameters, lang[LangKey.trainings]!, MyColors.greyColor),
             buildTrainingsContainer(myParameters, lang, settings),
@@ -98,8 +100,8 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
     );
   }
 
-  Container buildEducationContainer(
-      MyParameters myParameters, Map<LangKey, String> lang, int wordsNumberIndex) {
+  Container buildEducationContainer(MyParameters myParameters,
+      Map<LangKey, String> lang, int wordsNumberIndex) {
     return Container(
         height: myParameters.pixelHeight * 146,
         width: myParameters.pixelWidth * 390,
@@ -119,7 +121,9 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
             SizedBox(
                 height: myParameters.pixelHeight * 63,
                 child: InkWell(
-                  onTap: () {SettingsController.onTapIndexPage(ref, 2);},
+                  onTap: () {
+                    SettingsController.onTapIndexPage(ref, 2);
+                  },
                   child: buildNormalText(
                       myParameters, lang[LangKey.themesForLearning]!, 16),
                 )),
@@ -127,7 +131,9 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
             SizedBox(
                 height: myParameters.pixelHeight * 63,
                 child: InkWell(
-                  onTap: () {SettingsController.onTapIndexPage(ref, 3);},
+                  onTap: () {
+                    SettingsController.onTapIndexPage(ref, 3);
+                  },
                   child: Column(
                     children: [
                       buildNormalText(
@@ -136,7 +142,9 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
                         height: myParameters.pixelHeight * 11,
                       ),
                       buildNormalText(
-                          myParameters, '${numberOfWords[wordsNumberIndex]} ${lang[LangKey.words]!}', 12),
+                          myParameters,
+                          '${numberOfWords[wordsNumberIndex]} ${lang[LangKey.words]!}',
+                          12),
                     ],
                   ),
                 )),
@@ -166,8 +174,13 @@ class _SettingsViewState extends ConsumerState<SettingsView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildNormalText(
-                        myParameters, lang[LangKey.rateTheApp]!, 16),
+                    InkWell(
+                      onTap: () {
+                        SettingsController.onTapIndexPage(ref, 4);
+                      },
+                      child: buildNormalText(
+                          myParameters, lang[LangKey.rateTheApp]!, 16),
+                    ),
                     Padding(
                       padding:
                           EdgeInsets.only(right: myParameters.pixelWidth * 12),

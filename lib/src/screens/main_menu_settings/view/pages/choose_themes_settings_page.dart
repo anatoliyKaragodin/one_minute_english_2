@@ -1,13 +1,12 @@
 import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/view/widgtes/list_of_themes_widget.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/controller/settings_controller.dart';
 import 'package:one_minute_english/src/screens/start_screen/controller/start_screen_controller.dart';
+import 'package:one_minute_english/src/utils/app_language/app_language.dart';
+import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
-
-import '../../../../../utils/app_language/app_language.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/my_parameters.dart';
-import '../../../../../utils/my_widgets/my_color_button.dart';
+import 'package:one_minute_english/src/utils/my_parameters.dart';
+import 'package:one_minute_english/src/utils/my_widgets/my_color_button.dart';
 
 class ChooseThemesSettingsView extends ConsumerStatefulWidget {
   const ChooseThemesSettingsView({super.key});
@@ -74,12 +73,14 @@ class _ChooseThemesSettingsView
               ),
             ),
           ),
-          ListOfThemesWidget(lang: lang, height: 590,),
+          ListOfThemesWidget(
+            lang: lang,
+            height: 590,
+          ),
           Padding(
             padding: EdgeInsets.only(top: myParameters.pixelHeight * 20),
             child: MyColorButtonWidget(
-                func: () =>
-                    SettingsController.onTapIndexPage(ref, 3),
+                func: () => SettingsController.onTapIndexPage(ref, 3),
                 text: AppLanguage.listOfLanguages[lang][LangKey.nextButton]!),
           )
         ],

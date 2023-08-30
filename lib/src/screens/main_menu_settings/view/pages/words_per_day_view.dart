@@ -1,12 +1,12 @@
 import 'package:one_minute_english/main.dart';
+import 'package:one_minute_english/src/screens/main_menu_settings/controller/settings_controller.dart';
+import 'package:one_minute_english/src/screens/start_screen/controller/start_screen_controller.dart';
+import 'package:one_minute_english/src/utils/app_language/app_language.dart';
+import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
-
-import '../../../../../utils/app_language/app_language.dart';
-import '../../../../../utils/constants.dart';
-import '../../../../../utils/my_colors.dart';
-import '../../../../../utils/my_parameters.dart';
-import '../../../../start_screen/controller/start_screen_controller.dart';
-import '../../../controller/settings_controller.dart';
+import 'package:one_minute_english/src/utils/my_colors.dart';
+import 'package:one_minute_english/src/utils/my_parameters.dart';
+import 'package:one_minute_english/src/utils/my_widgets/my_text_widget.dart';
 
 class WordsPerDayView extends ConsumerStatefulWidget {
   const WordsPerDayView({super.key});
@@ -73,15 +73,12 @@ class _WordsPerDayViewState extends ConsumerState<WordsPerDayView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      '${numberOfWords[index]} ${AppLanguage.listOfLanguages[lang][LangKey.words]!}'
-                                          .toLowerCase(),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontFamily: MyConstants.fontLabel,
-                                          fontSize:
-                                              myParameters.pixelWidth * 22,
-                                          fontWeight: FontWeight.w400),
+                                    MyTextWidget(
+                                      text:
+                                          '${numberOfWords[index]} ${AppLanguage.listOfLanguages[lang][LangKey.words]!}'
+                                              .toLowerCase(),
+                                      fontSize: 22,
+                                      color: MyColors.whiteColor,
                                     ),
                                     Container(
                                         height: myParameters.pixelHeight * 26,
@@ -91,14 +88,18 @@ class _WordsPerDayViewState extends ConsumerState<WordsPerDayView> {
                                             color: settings.wordsNumberIndex ==
                                                     index
                                                 ? MyColors.mainColor
-                                                : MyColors.backColorDarkTheme,
+                                                : isDarkTheme
+                                                    ? MyColors
+                                                        .backColorDarkTheme
+                                                    : colors[index],
                                             border: Border.all(
                                                 color: MyColors.whiteColor!,
                                                 width: myParameters.pixelWidth *
                                                     4)),
                                         child: Padding(
-                                          padding: EdgeInsets.all(
-                                              myParameters.pixelWidth * 4),
+                                          padding: EdgeInsets.all(isDarkTheme
+                                              ? myParameters.pixelWidth * 4
+                                              : 0),
                                           child: settings.wordsNumberIndex ==
                                                   index
                                               ? Container(

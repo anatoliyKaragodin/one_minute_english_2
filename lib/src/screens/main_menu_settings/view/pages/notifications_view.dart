@@ -1,13 +1,12 @@
+import 'package:one_minute_english/src/screens/main_menu_settings/controller/settings_controller.dart';
 import 'package:one_minute_english/src/screens/main_menu_settings/view/widgets/my_switch.dart';
 import 'package:one_minute_english/src/screens/set_notification_screen/view/widgets/my_time_notification_widget.dart';
+import 'package:one_minute_english/src/screens/start_screen/controller/start_screen_controller.dart';
+import 'package:one_minute_english/src/utils/app_language/app_language.dart';
 import 'package:one_minute_english/src/utils/constants.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
-
-import '../../../../../utils/app_language/app_language.dart';
-import '../../../../../utils/my_parameters.dart';
-import '../../../../start_screen/controller/start_screen_controller.dart';
-import '../../../controller/settings_controller.dart';
+import 'package:one_minute_english/src/utils/my_parameters.dart';
 
 class NotificationsView extends ConsumerStatefulWidget {
   const NotificationsView({super.key});
