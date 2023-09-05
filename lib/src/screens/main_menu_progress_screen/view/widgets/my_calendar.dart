@@ -23,8 +23,9 @@ class _MyCalendarState extends ConsumerState<MyCalendar> {
     final currentDate = Jiffy.parseFromJiffy(progress.currentDate);
     final selectedDate = Jiffy.parseFromJiffy(progress.selectedDate);
 
-    // final startDayIndex = selectedDate.startOf(Unit.month).dayOfWeek - 3;
-    final startDayIndex = selectedDate.startOf(Unit.month).dayOfWeek - 1;
+    final startDayIndex = selectedDate.startOf(Unit.month).dayOfWeek == 1
+        ? selectedDate.startOf(Unit.month).dayOfWeek + 6
+        : selectedDate.startOf(Unit.month).dayOfWeek - 1;
 
     debugPrint(startDayIndex.toString());
     final weekDaysLabels = [
@@ -50,18 +51,16 @@ class _MyCalendarState extends ConsumerState<MyCalendar> {
       lang[LangKey.november],
       lang[LangKey.december],
     ];
-    return Scaffold(
-      body: Center(
-        child: SizedBox(
-          height: myParameters.pixelHeight * 450,
-          width: myParameters.pixelWidth * 380,
-          child: Column(
-            children: [
-              buildTopDateRow(myParameters, selectedDate, monthsLabels),
-              buildWeekdaysRow(myParameters, weekDaysLabels),
-              buildCalendar(selectedDate, startDayIndex, currentDate)
-            ],
-          ),
+    return Center(
+      child: SizedBox(
+        height: myParameters.pixelHeight * 450,
+        width: myParameters.pixelWidth * 380,
+        child: Column(
+          children: [
+            buildTopDateRow(myParameters, selectedDate, monthsLabels),
+            buildWeekdaysRow(myParameters, weekDaysLabels),
+            buildCalendar(selectedDate, startDayIndex, currentDate)
+          ],
         ),
       ),
     );
@@ -83,29 +82,29 @@ class _MyCalendarState extends ConsumerState<MyCalendar> {
             return index <= startDayIndex - 2
                 ? Container()
                 : buildICalendarDateContainer(
-                    index, selectedDate, currentDate, day);
+                    index, selectedDate, currentDate, day, startDayIndex);
           }),
     );
   }
 
-  InkWell buildICalendarDateContainer(
-      int index, Jiffy selectedDate, Jiffy currentDate, int day) {
+  InkWell buildICalendarDateContainer(int index, Jiffy selectedDate,
+      Jiffy currentDate, int day, int startDayIndex) {
     return InkWell(
       onTap: () {
-        ProgressController.onTapDate(ref, index);
+        ProgressController.onTapDate(ref, index - (startDayIndex - 2));
       },
       child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: index == selectedDate.date
+              color: index - (startDayIndex - 2) == selectedDate.date
                   ? MyColors.purpleColor.withOpacity(0.5)
                   : Colors.transparent),
           child: MyTextWidget(
-            color: index == currentDate.date &&
+            color: index - (startDayIndex - 2) == currentDate.date &&
                     currentDate.month == selectedDate.month &&
                     currentDate.year == selectedDate.year
-                ? index == selectedDate.date
+                ? index - (startDayIndex - 2) == selectedDate.date
                     ? MyColors.whiteColor
                     : MyColors.purpleColor
                 : MyColors.whiteColor,

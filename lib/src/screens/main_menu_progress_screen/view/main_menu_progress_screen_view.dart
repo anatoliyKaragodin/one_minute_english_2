@@ -7,6 +7,7 @@ import '../../../utils/constants.dart';
 import '../../../utils/my_colors.dart';
 import '../../../utils/my_parameters.dart';
 import '../../start_screen/controller/start_screen_controller.dart';
+import '../controller/progress_controller.dart';
 
 class MainMenuProgressScreenView extends ConsumerStatefulWidget {
   const MainMenuProgressScreenView({super.key});
@@ -28,6 +29,8 @@ class _MainMenuProgressScreenViewState
     final myParameters = MyParameters(context);
     final langIndex = ref.watch(startScreenProvider).chosenLanguageIndex;
     final lang = AppLanguage.listOfLanguages[langIndex];
+    final progress = ref.watch(progressProvider);
+    final selectedDate = progress.selectedDate;
     final texts = [
       lang[LangKey.alreadyKnow],
       lang[LangKey.repeating],
@@ -41,7 +44,8 @@ class _MainMenuProgressScreenViewState
           buildMyWordsText(lang, myParameters),
           buildTopLearningWordsStatContainer(myParameters, texts),
           buildLookByDateContainer(myParameters, lang),
-          MyProgressCircleIndicator(langIndex: langIndex, value: 0.1)
+          MyProgressCircleIndicator(
+              langIndex: langIndex, value: 0.1, selectedDate: selectedDate)
         ],
       ),
     );
@@ -253,7 +257,9 @@ class _MainMenuProgressScreenViewState
                 fontSize: myParameters.pixelWidth * 22),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              ProgressController.onTapSchedule(context);
+            },
             child: Image.asset(
               'assets/ui_images/main_app/progress/schedule.png',
               height: myParameters.pixelHeight * 31,

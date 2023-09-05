@@ -9,13 +9,31 @@ import '../../../../utils/my_parameters.dart';
 class MyProgressCircleIndicator extends StatelessWidget {
   final int langIndex;
   final double value;
+  final Jiffy selectedDate;
   const MyProgressCircleIndicator(
-      {super.key, required this.langIndex, required this.value});
+      {super.key,
+      required this.langIndex,
+      required this.value,
+      required this.selectedDate});
 
   @override
   Widget build(BuildContext context) {
     final myParameters = MyParameters(context);
     final lang = AppLanguage.listOfLanguages[langIndex];
+    final monthsLabels = [
+      lang[LangKey.january],
+      lang[LangKey.february],
+      lang[LangKey.march],
+      lang[LangKey.april],
+      lang[LangKey.may],
+      lang[LangKey.june],
+      lang[LangKey.july],
+      lang[LangKey.august],
+      lang[LangKey.september],
+      lang[LangKey.october],
+      lang[LangKey.november],
+      lang[LangKey.december],
+    ];
     return SizedBox(
       height: myParameters.pixelHeight * 205,
       width: myParameters.pixelWidth * 168,
@@ -23,7 +41,7 @@ class MyProgressCircleIndicator extends StatelessWidget {
         Align(
           alignment: Alignment.topCenter,
           child: Text(
-            '24 января',
+            '${selectedDate.date} ${monthsLabels[selectedDate.month - 1]}',
             style: TextStyle(
                 color: isDarkTheme
                     ? MyColors.whiteColor
