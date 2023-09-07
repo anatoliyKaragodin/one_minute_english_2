@@ -1,3 +1,4 @@
+import 'package:one_minute_english/src/repo/db/db_helper.dart';
 import 'package:one_minute_english/src/screens/choose_level_and_themes_screen/view/choose_level_and_themes_screen_view.dart';
 import 'package:one_minute_english/src/screens/main_app_menu_screen/view/main_app_menu_screen_view.dart';
 import 'package:one_minute_english/src/services/notifications_service.dart';
@@ -9,7 +10,7 @@ import 'package:timezone/data/latest.dart' as tz;
 Brightness systemBrightness = Brightness.light;
 bool isDarkTheme = false;
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   NotificationsService().init();
   tz.initializeTimeZones();
@@ -19,6 +20,9 @@ void main() {
   systemBrightness =
       WidgetsBinding.instance.platformDispatcher.platformBrightness;
   isDarkTheme = systemBrightness == Brightness.dark ? true : false;
+  await DatabaseHelper.instance.database;
+  var words = await DatabaseHelper.instance.getWordsByTheme("Beginner", 'russian');
+  debugPrint(words[10].imgPath.toString());
   runApp(const ProviderScope(child: MyApp()));
 }
 

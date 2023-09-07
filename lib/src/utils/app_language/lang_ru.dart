@@ -114,5 +114,6 @@ class LangRu {
     LangKey.october: 'Октябрь',
     LangKey.november: 'Ноябрь',
     LangKey.december: 'Декабрь',
+    LangKey.send: 'Отправить',
   };
 }
