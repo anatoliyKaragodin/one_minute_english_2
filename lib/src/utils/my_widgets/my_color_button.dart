@@ -45,6 +45,12 @@ class _MyColorButtonWidget extends ConsumerState<MyColorButtonWidget> {
           width: widget.width ?? myParameters.pixelWidth * 390,
           decoration: BoxDecoration(
               color: widget.color ?? MyColors.mainColor,
+              border: color == MyColors.whiteColor?Border.all(color: Color.fromARGB(
+                color.alpha,
+                (color.red * 0.7).toInt(),
+                (color.green * 0.7).toInt(),
+                (color.blue * 0.7).toInt(),
+              )):null,
               boxShadow: [
                 BoxShadow(
                   color: Color.fromARGB(
@@ -67,7 +73,9 @@ class _MyColorButtonWidget extends ConsumerState<MyColorButtonWidget> {
                   fontFamily: MyConstants.fontLabel,
                   fontWeight: widget.fontWeight ?? FontWeight.w900,
                   fontSize: widget.fontSize ?? myParameters.pixelWidth * 18,
-                  color: MyColors.whiteColor),
+                  color: color == MyColors.whiteColor
+                      ? MyColors.blackColor87
+                      : MyColors.whiteColor),
             ),
           ),
         ),

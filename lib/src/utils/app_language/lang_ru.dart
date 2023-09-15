@@ -115,5 +115,14 @@ class LangRu {
     LangKey.november: 'Ноябрь',
     LangKey.december: 'Декабрь',
     LangKey.send: 'Отправить',
+    LangKey.selected: 'выбрано',
+    LangKey.from: 'из',
+    LangKey.learn: 'Учить',
+    LangKey.training: 'Тренировка',
+    LangKey.readTheseWordsCarefully: 'Внимательно прочитай эти слова',
+    LangKey.selectTranslation: 'Выбери перевод',
+    LangKey.payAttention: 'Обрати внимание',
+    LangKey.yourAnswer: 'Твой ответ:',
+    LangKey.correctAnswer: 'Правильный ответ:',
   };
 }

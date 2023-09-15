@@ -118,7 +118,7 @@ class DatabaseHelper {
 
       var translationWord = translationWords.firstWhere(
           (element) => element[DbConstants.columnEnglishId] == englishId);
-var wordString = englishWord[DbConstants.columnName] as String;
+      var wordString = englishWord[DbConstants.columnName] as String;
       var word = Word(
         englishId: englishId,
         word: wordString,
@@ -127,8 +127,10 @@ var wordString = englishWord[DbConstants.columnName] as String;
         level: englishWord[DbConstants.columnLevel] as String,
         translation: translationWord[DbConstants.columnTranslation] as String,
         language: translationWord[DbConstants.columnLanguage] as String,
-        soundPath: 'assets/for_db/words_sounds/$wordString.mp3',
-        imgPath: 'assets/for_db/words_images/$wordString.svg',
+        soundPath:
+            'for_db/words_sounds/${wordString.trim()}.mp3',
+        imgPath:
+            'assets/for_db/words_images/${wordString.trim()}.svg',
       );
       words.add(word);
     }

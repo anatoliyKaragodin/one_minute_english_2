@@ -24,7 +24,7 @@ class _MyScheduleDialogState extends ConsumerState<MyScheduleDialog> {
     final lang = AppLanguage.listOfLanguages[langIndex];
     return Dialog(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(myParameters.pixelWidth * 10)),
+          borderRadius: BorderRadius.circular(myParameters.pixelWidth * 30)),
       insetPadding: EdgeInsets.zero,
       alignment: Alignment.bottomCenter,
       backgroundColor:

@@ -172,4 +172,13 @@ enum LangKey {
   october,
   november,
   december,
+  selected,
+  from,
+  learn,
+  training,
+  readTheseWordsCarefully,
+  selectTranslation,
+  payAttention,
+  yourAnswer,
+  correctAnswer
 }

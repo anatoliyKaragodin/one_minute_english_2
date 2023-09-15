@@ -1,4 +1,5 @@
 import 'package:one_minute_english/main.dart';
+import 'package:one_minute_english/src/repo/model/words_controller.dart';
 import 'package:one_minute_english/src/screens/main_menu_education_screen/view/widgets/list_of_learning_themes_widget.dart';
 import 'package:one_minute_english/src/utils/library.dart';
 import 'package:one_minute_english/src/utils/my_colors.dart';
@@ -23,6 +24,7 @@ class _MainMenuEducationScreenViewState
     final myParameters = MyParameters(context);
     final langIndex = ref.watch(startScreenProvider).chosenLanguageIndex;
     final lang = AppLanguage.listOfLanguages[langIndex];
+    final words = ref.watch(wordsProvider);
     return Column(
       children: [
         buildTopContainer(myParameters, lang),

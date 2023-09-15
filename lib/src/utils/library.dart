@@ -10,3 +10,4 @@ export 'package:carousel_slider/carousel_slider.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:percent_indicator/percent_indicator.dart';
 export 'package:jiffy/jiffy.dart';
+export 'package:audioplayers/audioplayers.dart';
